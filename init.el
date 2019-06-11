@@ -3,6 +3,7 @@
 ;; just comment it out by adding a semicolon to the start of the line.
 ;; You may delete these explanatory comments.
 (require 'package)
+(require 'subr-x)
 
 (load "~/.emacs.d/functions.el")
 (load "~/.emacs.d/keybindings.el")
@@ -44,7 +45,7 @@
  '(markdown-command "md2html")
  '(package-selected-packages
    (quote
-    (fill-column-indicator sudo-edit flycheck-objc-clang objc-font-lock json-mode asciidoc ox-gfm htmlize editorconfig tide markdown-preview-mode markdown-mode company typescript-mode evil-collection evil-numbers evil nlinum plantuml-mode use-package projectile neotree ivy elfeed-org)))
+    (ox-asciidoc fill-column-indicator sudo-edit flycheck-objc-clang objc-font-lock json-mode asciidoc ox-gfm htmlize editorconfig tide markdown-preview-mode markdown-mode company typescript-mode evil-collection evil-numbers evil nlinum plantuml-mode use-package projectile neotree ivy elfeed-org)))
  '(pos-tip-background-color "#FFFACE")
  '(pos-tip-foreground-color "#272822")
  '(vc-annotate-background nil)

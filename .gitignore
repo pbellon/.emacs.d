@@ -1,6 +1,16 @@
 elpa/
 auto-save-list/
 url/
+# emacs files
 \#*
 .\#*
 *~
+# vim files
+*.swp
+*.swo
+*.swn
+
+# projectile & session files
+projectile.cache
+projectile-bookmarks.eld
+session.*

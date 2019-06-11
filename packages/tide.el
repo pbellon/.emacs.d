@@ -1,5 +1,6 @@
 (use-package typescript-mode
-  :ensure t)
+  :ensure t
+)
 
 (use-package company
   :ensure t
@@ -39,7 +40,7 @@
  :init
  :ensure t
  :after (typescript-mode company flycheck)
- :hook ((typescript-mode . tide-setup)
+ :hook ((typescript-mode . setup-tide-mode)
         (typescript-mode . editorconfig-apply))
  :config
  

@@ -9,6 +9,7 @@
   (global-unset-key (kbd "C-."))
   (setq evil-want-keybinding nil)
   :config
+  (global-set-key (kbd "<f5>") 'evil-ex-sort)
   (global-set-key (kbd "C-x n RET") 'evil-next-buffer)
   (global-set-key (kbd "C-x N RET") 'evil-prev-buffer)
   (evil-mode 1))

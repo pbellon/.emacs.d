@@ -9,5 +9,6 @@
   (setq org-plantuml-jar-path plantuml-jar-path)
   (add-to-list 'auto-mode-alist '("\\.plantuml\\'" . plantuml-mode))
   (add-to-list 'auto-mode-alist '("\\.puml\\'" . plantuml-mode))
+  (add-to-list 'auto-mode-alist '("\\.uml\\'" . plantuml-mode))
   (org-babel-do-load-languages 'org-babel-load-languages
 			       '((plantuml . t))))
