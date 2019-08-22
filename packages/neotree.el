@@ -1,8 +1,8 @@
-;; Neotree
 (use-package neotree
-  :after (projectile evil)
+  :after (projectile evil all-the-icons)
   :ensure t
   :config
+  (setq neo-theme (if (display-graphic-p) 'icons 'arrow))
   (global-set-key [f8] 'neotree-toggle)
   (setq neo-window-fixed-size nil)
   (setq projectile-switch-project-action 'neotree-projectile-action)
