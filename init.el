@@ -4,10 +4,12 @@
 ;; You may delete these explanatory comments.
 (require 'package)
 (require 'subr-x)
-
+;; setting coding-system
+(prefer-coding-system 'utf-8)
+(setq coding-system-for-read 'utf-8)
+(setq coding-system-for-write 'utf-8)
 (load "~/.emacs.d/functions.el")
 (load "~/.emacs.d/keybindings.el")
-(load "~/.emacs.d/packages/archives.el")
 (load "~/.emacs.d/packages/setup.el")
 (load "~/.emacs.d/packages/dependencies.el")
 (load "~/.emacs.d/hooks.el")
