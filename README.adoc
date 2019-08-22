@@ -1,0 +1,4 @@
+= My Emacs configuration
+== Dependencies
+== Main keybindings
+=== Buffer management
