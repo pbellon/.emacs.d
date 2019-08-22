@@ -18,5 +18,5 @@
 (global-set-key (kbd "C-<kp-add>") 'enlarge-window)
 
 ;; maximize current window
-(global-set-key (kbd "C-<kp-0>") 'maximize-window)
+(global-set-key (kbd "C-<kp-enter>") 'maximize-window)
 (global-set-key (kbd "C-<kp-decimal>") 'minimize-window)
