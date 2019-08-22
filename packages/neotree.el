@@ -6,7 +6,19 @@
   (global-set-key [f8] 'neotree-toggle)
   (setq neo-window-fixed-size nil)
   (setq projectile-switch-project-action 'neotree-projectile-action)
-  (setq neo-hidden-regexp-list '("^\\." "\\.pyc$" "~$" "^#.*#$" "\\.elc$" "node_modules/*"))
+  (setq neo-hidden-regexp-list
+    '(
+      "^\\."
+      "\\.pyc$"
+      "~$"
+      "^#.*#$"
+      "\\.elc$"
+      "node_modules/*"
+      "session.*"
+      "projectile.cache"
+      "projectile-bookmarks.eld"
+    )
+  )
   (evil-define-key 'normal neotree-mode-map (kbd "r") 'neotree-refresh)
   (evil-define-key 'normal neotree-mode-map (kbd "s") 'neotree-enter-horizontal-split)
   (evil-define-key 'normal neotree-mode-map (kbd "TAB") 'neotree-enter)
