@@ -1,4 +1,16 @@
-= My Emacs configuration
-== Dependencies
+= Emacs configuration
+==  Features / modes
+- Vim edition shortcuts thanks to evil-mode
+- File menu similar to nerdtree with neotree
+- Packages dependencies with use-package, see packages/setup.el
+
+== Custom functions
+- `bm/kill-this-buffer` kill the active buffer & close its frame
+- `bm/load-buffer` evaluate the content of the current buffer, useful when customizing emacs
 == Main keybindings
+- `<C-x C-r` calls `eval-region`
 === Buffer management
+
+== Other dependencies included
+- asciidoc
+- fill-column-indicator
