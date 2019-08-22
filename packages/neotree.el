@@ -18,4 +18,5 @@
   (evil-define-key 'normal neotree-mode-map (kbd "p") 'neotree-previous-line)
   (evil-define-key 'normal neotree-mode-map (kbd "A") 'neotree-stretch-toggle)
   (evil-define-key 'normal neotree-mode-map (kbd "H") 'neotree-hidden-file-toggle)
+  (evil-define-key 'normal neotree-mode-map (kbd "R") 'neotree-change-root)
 )

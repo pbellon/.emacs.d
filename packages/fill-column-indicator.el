@@ -4,4 +4,5 @@
   (setq fci-rule-width 1)
   (setq fci-rule-color "pink")
   (setq fci-rule-column 80)
-  :hook prog-mode)
+  :config
+  (add-hook 'prog-mode-hook 'fci-mode))

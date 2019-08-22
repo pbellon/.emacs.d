@@ -23,8 +23,8 @@
   (global-set-key (kbd "C-c -") 'evil-numbers/dec-at-pt))
 
 ;; Evil Collection
-(use-package evil-collection
-  :after evil
-  :ensure t
-  :config
-  (evil-collection-init))
+;; (use-package evil-collection
+;;   :after evil
+;;   :ensure t
+;;   :config
+;;   (evil-collection-init))
