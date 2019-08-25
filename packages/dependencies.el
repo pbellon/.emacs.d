@@ -17,6 +17,7 @@
 
 (load "~/.emacs.d/packages/all-the-icons.el")
 (load "~/.emacs.d/packages/asciidoc.el")
+(load "~/.emacs.d/packages/cheat.el")
 (load "~/.emacs.d/packages/evil.el")
 (load "~/.emacs.d/packages/js.el")
 (load "~/.emacs.d/packages/markdown.el")
