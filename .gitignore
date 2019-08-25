@@ -9,7 +9,7 @@ url/
 *.swp
 *.swo
 *.swn
-
+**/sheets/*.html
 # projectile & session files
 projectile.cache
 projectile-bookmarks.eld
