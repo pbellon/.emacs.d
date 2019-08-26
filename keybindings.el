@@ -20,3 +20,7 @@
 ;; maximize current window
 (global-set-key (kbd "C-<kp-enter>") 'maximize-window)
 (global-set-key (kbd "C-<kp-decimal>") 'minimize-window)
+
+
+;; ALT+F4 binding
+(global-set-key (kbd "M-<f4>") 'kill-emacs)
