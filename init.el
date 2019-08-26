@@ -47,7 +47,7 @@
  '(markdown-command "md2html")
  '(package-selected-packages
    (quote
-    (all-the-icons buffer-move js2-mode format-sql org-babel flycheck-pycheckers py-autopep8 yaml-mode groovy-mode org-brain ox-asciidoc fill-column-indicator sudo-edit json-mode asciidoc ox-gfm htmlize editorconfig tide markdown-mode company typescript-mode evil-collection evil-numbers evil nlinum plantuml-mode use-package projectile neotree ivy)))
+    (fold-dwim all-the-icons buffer-move js2-mode format-sql org-babel flycheck-pycheckers py-autopep8 yaml-mode groovy-mode org-brain ox-asciidoc fill-column-indicator sudo-edit json-mode asciidoc ox-gfm htmlize editorconfig tide markdown-mode company typescript-mode evil-collection evil-numbers evil nlinum plantuml-mode use-package projectile neotree ivy)))
  '(pos-tip-background-color "#FFFACE")
  '(pos-tip-foreground-color "#272822")
  '(vc-annotate-background nil)

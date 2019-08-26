@@ -1,2 +1,4 @@
-(use-package hs-minor-mode
-  :hook ((js-mode js2-mode typescript-mode) . hs-minor-mode))
+(add-hook 'prog-mode-hook 'hs-minor-mode)
+
+(use-package fold-dwim
+  :ensure t)

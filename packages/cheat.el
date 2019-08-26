@@ -1,2 +1,4 @@
-(load "./cheat/cheat.el")
-(cheat/setup)
+(use-package cheat
+  :load-path "~/Dev/cheat/"
+  :config
+  (cheat/init))
