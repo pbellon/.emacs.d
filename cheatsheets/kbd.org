@@ -1,0 +1,3 @@
+* Neotree
+| =C-x n f= | =neotree-find=       | Locate the current file in neotree                                    |
+| =C-x n g= | =neotree-go-to-file= | Change the current neotree folder to be the one of the current buffer |

@@ -1,3 +1,9 @@
+(defun neotree-go-to-file ()
+    "Change the neotree current folder to match the one of the current opened file"
+    (interactive)
+    (neotree-dir default-directory))
+  
+
 (use-package neotree
   :after (projectile evil all-the-icons)
   :ensure t
@@ -31,4 +37,7 @@
   (evil-define-key 'normal neotree-mode-map (kbd "A") 'neotree-stretch-toggle)
   (evil-define-key 'normal neotree-mode-map (kbd "H") 'neotree-hidden-file-toggle)
   (evil-define-key 'normal neotree-mode-map (kbd "R") 'neotree-change-root)
+  (evil-define-key 'normal neotree-mode-map (kbd "d") 'neotree-delete-node)
+  (global-set-key (kbd "C-x n g") 'neotree-go-to-file)
+  (global-set-key (kbd "C-x n f") 'neotree-find)
 )

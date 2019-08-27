@@ -18,6 +18,10 @@
   :ensure t
   :after org)
 
+
+(setq org-publish-project-alist nil)
+(load-file "~/notes/init.el")
+
 ;; customization of org behavior
 (with-eval-after-load 'org
   (setq org-src-fontify-natively t)
