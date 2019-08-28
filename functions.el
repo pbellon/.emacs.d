@@ -30,9 +30,3 @@
   "Reload init.el"
   (interactive)
   (load-file config-file))
-
-
-(defun geo/depsjs ()
-  "Run mvn geo:depsjs into aigle5-web/aigle-web-server"
-  (interactive)
-  (message (shell-command-to-string "cd ~/Dev/aigle5-web/aigle-web-server && mvn geo:depsjs")))
