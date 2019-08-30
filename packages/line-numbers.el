@@ -1,3 +1,3 @@
 (use-package display-line-numbers
   :config
-  (global-display-line-numbers-mode t))
+  (add-hook 'prog-mode-hook #'display-line-numbers-mode))
