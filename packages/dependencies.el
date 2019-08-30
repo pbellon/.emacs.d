@@ -1,11 +1,33 @@
 ;; we first need to be sure to have quelpa & quelpa-use-package 
 ;; installed in order to install
-(load "~/.emacs.d/packages/quelpa.el")
+;; (manager/register 
+;;  '(
+;;    'all-the-icons
+;;    'asciidoc
+;;    'cheat
+;;    'evil
+;;    'fill-column-indicator
+;;    'ibuffer
+;;    'ivy
+;;    'js
+;;    'magit
+;;    'markdown
+;;    'neotree
+;;    'nlinum-mode
+;;    'org-mode
+;;    'plantuml
+;;    'projectile
+;;    'tide
+;;    )
+;; )
+;; (manager/setup)
 
-;; then we can install all dependencies & configure them
+;;; then we can install all dependencies & configure them
+
 (load "~/.emacs.d/packages/all-the-icons.el")
 (load "~/.emacs.d/packages/asciidoc.el")
 (load "~/.emacs.d/packages/cheat.el")
+(load "~/.emacs.d/packages/dashboard.el")
 (load "~/.emacs.d/packages/evil.el")
 (load "~/.emacs.d/packages/fill-column-indicator.el")
 (load "~/.emacs.d/packages/ibuffer.el")
