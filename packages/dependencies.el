@@ -36,7 +36,9 @@
 (load "~/.emacs.d/packages/magit.el")
 (load "~/.emacs.d/packages/markdown.el")
 (load "~/.emacs.d/packages/neotree.el")
-(load "~/.emacs.d/packages/nlinum-mode.el")
+
+(load "~/.emacs.d/packages/linum-mode.el")
+;; (load "~/.emacs.d/packages/nlinum-mode.el")
 (load "~/.emacs.d/packages/org-mode.el")
 (load "~/.emacs.d/packages/plantuml.el")
 (load "~/.emacs.d/packages/projectile.el")
