@@ -24,7 +24,9 @@ There are two things you can do about this warning:
     (add-to-list 'package-archives (cons "gnu" (concat proto "://elpa.gnu.org/packages/")))))
 
 (package-initialize)
-
+(setq gnutls-algorithm-priority "NORMAL:-VERS-TLS1.3")
+(setq package-check-signature nil)
+(add-to-list 'package-unsigned-archives "undo-tree")
 
 (unless (package-installed-p 'use-package)
   (package-refresh-contents)
