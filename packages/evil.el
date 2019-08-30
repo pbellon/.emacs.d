@@ -27,6 +27,13 @@
   (global-set-key (kbd "C-c +") 'evil-numbers/inc-at-pt)
   (global-set-key (kbd "C-c -") 'evil-numbers/dec-at-pt))
 
+
+(use-package evil-multiedit
+  :after t
+  :ensure t
+  :config
+  (evil-multiedit-default-keybinds))
+  
 ;; Evil Collection
 ;; (use-package evil-collection
 ;;   :after evil
