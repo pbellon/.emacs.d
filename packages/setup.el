@@ -31,3 +31,8 @@ There are two things you can do about this warning:
   (package-install 'use-package))
 
 (require 'use-package)
+(load "~/.emacs.d/packages/quelpa.el")
+
+;; (load "~/.emacs.d/packages/manager.el")
+;; (setq manager/dependencies-config-dir "~/.emacs.d/packages/")
+;; (setq manager/dependencies-config-file "dependencies.el")
