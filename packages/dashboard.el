@@ -1,4 +1,4 @@
-(use-package emacs-dashboard
+(use-package dashboard
   :ensure t
   :config
   (dashboard-setup-startup-hook))
