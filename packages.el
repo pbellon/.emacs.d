@@ -44,11 +44,11 @@ There are two things you can do about this warning:
 
 (require 'quelpa-use-package)
 (setq use-package-ensure-function 'quelpa)
-(setq load-path (cons "~/.emacs/quelpa/build" load-path))
 
 (use-package manager
-  :quelpa (manager :fetcher git :url "https://github.com/pbellon/emacs-package-manager.git" )
-  :ensure t
+  :quelpa ((manager :fetcher github :repo "pbellon/emacs-package-manager")
+            :upgrade nil)
   :config
   (setq manager/dependencies-config-dir "~/.emacs.d/packages")
   (manager/setup))
+
