@@ -40,7 +40,9 @@ There are two things you can do about this warning:
   (quelpa
    '(quelpa-use-package
      :fetcher git
-     :url "https://framagit.org/steckerhalter/quelpa-use-package.git")))
+     :url "https://framagit.org/steckerhalter/quelpa-use-package.git")
+   :upgrade t
+))
 
 (require 'quelpa-use-package)
 (setq use-package-ensure-function 'quelpa)
@@ -50,5 +52,5 @@ There are two things you can do about this warning:
             :upgrade nil)
   :config
   (setq manager/dependencies-config-dir "~/.emacs.d/packages")
-  (manager/setup))
+  (manager/load-dependencies))
 
