@@ -1,26 +1,4 @@
 ;; we first need to be sure to have quelpa & quelpa-use-package 
-;; installed in order to install
-;; (manager/register 
-;;  '(
-;;    'all-the-icons
-;;    'asciidoc
-;;    'cheat
-;;    'evil
-;;    'fill-column-indicator
-;;    'ibuffer
-;;    'ivy
-;;    'js
-;;    'magit
-;;    'markdown
-;;    'neotree
-;;    'nlinum-mode
-;;    'org-mode
-;;    'plantuml
-;;    'projectile
-;;    'tide
-;;    )
-;; )
-;; (manager/setup)
 
 ;;; then we can install all dependencies & configure them
 (load "~/.emacs.d/packages/editorconfig.el")
