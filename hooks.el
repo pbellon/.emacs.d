@@ -5,7 +5,7 @@
 (scroll-bar-mode -1)
 
 ;; submode hooks
-(add-hook 'prog-mode 'hs-minor-mode)
+(add-hook 'prog-mode-hook #'hs-minor-mode)
 
 (setq frame-title-format
       '(buffer-file-name "%f" (dired-directory direct-directy "%b")))
