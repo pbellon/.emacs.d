@@ -29,7 +29,7 @@
 
 
 (use-package evil-multiedit
-  :after t
+  :after evil
   :ensure t
   :config
   (evil-multiedit-default-keybinds))

@@ -33,8 +33,22 @@ There are two things you can do about this warning:
   (package-install 'use-package))
 
 (require 'use-package)
-(load "~/.emacs.d/packages/quelpa.el")
 
-;; (load "~/.emacs.d/packages/manager.el")
-;; (setq manager/dependencies-config-dir "~/.emacs.d/packages/")
-;; (setq manager/dependencies-config-file "dependencies.el")
+(use-package quelpa
+  :ensure t
+  :config
+  (quelpa
+   '(quelpa-use-package
+     :fetcher git
+     :url "https://framagit.org/steckerhalter/quelpa-use-package.git")))
+
+(require 'quelpa-use-package)
+(setq use-package-ensure-function 'quelpa)
+(setq load-path (cons "~/.emacs/quelpa/build" load-path))
+
+(use-package manager
+  :quelpa (manager :fetcher git :url "https://github.com/pbellon/emacs-package-manager.git" )
+  :ensure t
+  :config
+  (setq manager/dependencies-config-dir "~/.emacs.d/packages")
+  (manager/setup))
