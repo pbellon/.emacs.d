@@ -45,7 +45,6 @@ There are two things you can do about this warning:
 ))
 
 (require 'quelpa-use-package)
-(setq use-package-ensure-function 'quelpa)
 
 (use-package manager
   :quelpa ((manager :fetcher github :repo "pbellon/emacs-package-manager")
