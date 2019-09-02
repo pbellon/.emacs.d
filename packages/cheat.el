@@ -13,7 +13,7 @@
 ;;   (add-to-list 'cheat/sheets-folders "~/.emacs.d/cheatsheets")
 ;;   (cheat/init)
 ;; )
-(load-file "~/.emacs.d/quelpa/build/cheat/cheat.el")
+(add-to-list 'load-path "~/Dev/cheat")
 (require 'cheat)
 (with-eval-after-load 'cheat
   (add-to-list 'cheat/sheets-folders "~/.emacs.d/cheatsheets")
