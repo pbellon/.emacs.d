@@ -14,6 +14,11 @@
   (global-set-key (kbd "C-x N RET") 'evil-prev-buffer)
   (evil-mode 1))
 
+;; Evil multiedit 
+(use-package evil-multiedit
+  :after evil
+  :ensure t)
+
 ;; Evil Numbers
 (use-package evil-numbers
   :after evil
@@ -22,6 +27,13 @@
   (global-set-key (kbd "C-c +") 'evil-numbers/inc-at-pt)
   (global-set-key (kbd "C-c -") 'evil-numbers/dec-at-pt))
 
+
+(use-package evil-multiedit
+  :after evil
+  :ensure t
+  :config
+  (evil-multiedit-default-keybinds))
+  
 ;; Evil Collection
 ;; (use-package evil-collection
 ;;   :after evil

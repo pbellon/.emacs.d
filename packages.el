@@ -24,10 +24,32 @@ There are two things you can do about this warning:
     (add-to-list 'package-archives (cons "gnu" (concat proto "://elpa.gnu.org/packages/")))))
 
 (package-initialize)
-
+(setq gnutls-algorithm-priority "NORMAL:-VERS-TLS1.3")
+(setq package-check-signature nil)
+(add-to-list 'package-unsigned-archives "undo-tree")
 
 (unless (package-installed-p 'use-package)
   (package-refresh-contents)
   (package-install 'use-package))
 
 (require 'use-package)
+
+(use-package quelpa
+  :ensure t
+  :config
+  (quelpa
+   '(quelpa-use-package
+     :fetcher git
+     :url "https://framagit.org/steckerhalter/quelpa-use-package.git")
+   :upgrade t
+))
+
+(require 'quelpa-use-package)
+
+(use-package manager
+  :quelpa ((manager :fetcher github :repo "pbellon/emacs-package-manager")
+            :upgrade nil)
+  :config
+  (setq manager/dependencies-config-dir "~/.emacs.d/packages")
+  (manager/load-dependencies))
+

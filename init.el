@@ -10,8 +10,7 @@
 (setq coding-system-for-write 'utf-8)
 (load "~/.emacs.d/functions.el")
 (load "~/.emacs.d/keybindings.el")
-(load "~/.emacs.d/packages/setup.el")
-(load "~/.emacs.d/packages/dependencies.el")
+(load "~/.emacs.d/packages.el")
 (load "~/.emacs.d/hooks.el")
 (load "~/.emacs.d/themes.el")
 
@@ -47,7 +46,7 @@
  '(markdown-command "md2html")
  '(package-selected-packages
    (quote
-    (cheat magit quelpa-use-package quelpa vimrc-mode fold-dwim all-the-icons buffer-move js2-mode format-sql org-babel flycheck-pycheckers py-autopep8 yaml-mode groovy-mode org-brain ox-asciidoc fill-column-indicator sudo-edit json-mode asciidoc ox-gfm htmlize editorconfig tide markdown-mode company typescript-mode evil-collection evil-numbers evil nlinum plantuml-mode use-package projectile neotree ivy)))
+    (fish-mode third second first all-the-icons asciidoc buffer-move cheat dashboard editorconfig evil evil-collection evil-numbers fill-column-indicator flycheck-pycheckers fold-dwim format-sql htmlize ivy js2-mode json-mode magit markdown-mode neotree org-babel ox-asciidoc ox-gfm plantuml-mode projectile quelpa quelpa-use-package tide typescript-mode use-package vimrc-mode yaml-mode)))
  '(pos-tip-background-color "#FFFACE")
  '(pos-tip-foreground-color "#272822")
  '(vc-annotate-background nil)
@@ -71,10 +70,7 @@
      (320 . "#2896B5")
      (340 . "#2790C3")
      (360 . "#66D9EF"))))
- '(vc-annotate-very-old-color nil)
- '(weechat-color-list
-   (quote
-    (unspecified "#272822" "#3C3D37" "#F70057" "#F92672" "#86C30D" "#A6E22E" "#BEB244" "#E6DB74" "#40CAE4" "#66D9EF" "#FB35EA" "#FD5FF0" "#74DBCD" "#A1EFE4" "#F8F8F2" "#F8F8F0"))))
+ '(vc-annotate-very-old-color nil))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
