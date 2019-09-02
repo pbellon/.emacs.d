@@ -1,12 +1,3 @@
-(defun adoc/html ()
-  "Generate the current asciidoc file with asciidoc"
-  (interactive)
-  (setq cmd (concat "source ~/opt/shell/setup.sh && activate-ruby-if-needed && bundle exec asciidoctor -b html5 " 
-           (buffer-file-name)))
-  (message (concat "Running command: " cmd))
-  (setq res (shell-command-to-string cmd))
-  (message res)
-)
 
 ;; buffer management (bm)
 ;; load-file the current buffer file
