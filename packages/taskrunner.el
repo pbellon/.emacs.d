@@ -1,12 +1,14 @@
 (use-package taskrunner
   :quelpa 
-  (taskrunner :fetcher git :url "https://github.com/emacs-taskrunner/emacs-taskrunner.git")
+  (taskrunner :fetcher github :url "emacs-taskrunner/emacs-taskrunner")
   :ensure t
 )
 
-
 (use-package ivy-taskrunner
   :after (taskrunner ivy swiper)
-  :quelpa
-  (ivy-taskrunner :fetcher git :url "https://github.com/emacs-taskrunner/ivy-taskrunner.git")
-  :ensure t)
+  :quelpa 
+  (ivy-taskrunner
+    :fetcher github
+    :repo "emacs-taskrunner/ivy-taskrunner")
+  :ensure t
+  )
