@@ -19,6 +19,7 @@
       "~$"
       "^#.*#$"
       "\\.elc$"
+      "\\.orig$"
       "node_modules/*"
       "session.*"
       "projectile.cache"
