@@ -12,7 +12,13 @@
   (global-set-key (kbd "<f5>") 'evil-ex-sort)
   (global-set-key (kbd "C-x n RET") 'evil-next-buffer)
   (global-set-key (kbd "C-x N RET") 'evil-prev-buffer)
-  (evil-mode 1))
+  ;; deactivate evil when needed (lin
+  (evil-set-initial-state 'ibuffer-mode 'normal)
+  (evil-set-initial-state 'bookmark-bmenu-mode 'normal)
+  (evil-set-initial-state 'dired-mode 'emacs)
+  (evil-set-initial-state 'sunrise-mode 'emacs)
+  (evil-mode 1)
+)
 
 ;; Evil multiedit 
 (use-package evil-multiedit
