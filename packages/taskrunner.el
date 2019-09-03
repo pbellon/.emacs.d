@@ -1,6 +1,6 @@
 (use-package taskrunner
-  :quelpa 
-  (taskrunner :fetcher github :url "emacs-taskrunner/emacs-taskrunner")
+  :quelpa
+  (taskrunner :fetcher github :repo "emacs-taskrunner/emacs-taskrunner")
   :ensure t
 )
 
