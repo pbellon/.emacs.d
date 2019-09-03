@@ -7,7 +7,7 @@
   (load-file buffer-file-name))
 (global-set-key (kbd "C-x C-l") 'bm/load-buffer)  
 
-;; bm/kill-this-buffer
+;; kill the current buffer and quit its frame (with evil-quit)
 (defun bm/kill-this-buffer ()
   "Will kill the current buffer then exit the killed buffer window."
   (interactive)
