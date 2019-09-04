@@ -18,6 +18,11 @@
   :ensure t
   :after org)
 
+;; reveal.js export backend to give presentations with org
+(use-package ox-reveal
+  :after org
+  :ensure t)
+
 
 (setq org-publish-project-alist nil)
 (load-file "~/notes/init.el")
