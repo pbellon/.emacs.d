@@ -4,8 +4,9 @@
   :init
   (setq initial-buffer-choice #'(lambda () (get-buffer "*dashboard*")))
   (setq dashboard-startup-banner 'logo)
-  (setq dashboard-items '((recents . 5)
-                          (projects . 5)
-                          (bookmarks . 5)))
+  (setq dashboard-items '((recents . 9)
+                          (projects . 9)
+                          (bookmarks . 4)))
+
   :config
   (dashboard-setup-startup-hook))
