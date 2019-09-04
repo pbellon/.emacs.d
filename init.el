@@ -11,7 +11,7 @@
 (load "~/.emacs.d/functions.el")
 (load "~/.emacs.d/keybindings.el")
 (load "~/.emacs.d/packages.el")
-(load "~/.emacs.dl:qpackages.el")
+(load "~/.emacs.d/packages.el")
 (load "~/.emacs.d/hooks.el")
 (load "~/.emacs.d/themes.el")
 
