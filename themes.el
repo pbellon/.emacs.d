@@ -34,5 +34,31 @@
 
 (use-package doom-modeline
   :ensure t
+  :quelpa (doom-modeline :fetcher github :repo "seagle0128/doom-modeline")
+  :after (all-the-icons)
   :config
   (doom-modeline-mode 1))
+
+
+;;; Fonts
+(setq ia-writer-duospace "iA Writer Duospace")
+(setq ia-writer-duo-v "iA Writer Duo V")
+(setq ia-writer-mono-s "iA Writer Mono S")
+
+(defun with-variable-width-font (font-family-name)
+  (setq buffer-face-mode-face '(:family font-family-name :height 100 :width semi-condensed))
+  (buffer-face-mode))
+
+(defun with-ia-writer-duospace-variable ()
+  (interactive)
+  (with-variable-width-font ia-writer-duospace))
+
+(defun with-ia-writer-duo-variable ()
+  (interactive)
+  (with-variable-width-font ia-writer-duo-v))
+
+(defun with-ia-writer-mono ()
+  (interactive)
+  (with-fixed-width-font ia-writer-mono-s))
+  
+(add-hook 'org-mode-hook 'with-ia-writer-mono)
