@@ -35,7 +35,6 @@
  '(custom-safe-themes
     (quote
       ("a27c00821ccfd5a78b01e4f35dc056706dd9ede09a8b90c6955ae6a390eb1c1e" default)))
- '(doom-modeline-mode t)
  '(electric-indent-mode nil)
  '(fci-rule-color "#3C3D37")
  '(highlight-changes-colors (quote ("#FD5FF0" "#AE81FF")))
@@ -53,7 +52,7 @@
  '(markdown-command "md2html")
  '(package-selected-packages
     (quote
-      (vterm eterm grip-mode doom-modeline taskrunner cask-mode ivy-taskrunner emacs-taskrunner bui zoom-frm fish-mode third second first all-the-icons asciidoc buffer-move cheat dashboard editorconfig evil evil-collection evil-numbers fill-column-indicator flycheck-pycheckers fold-dwim format-sql htmlize ivy js2-mode json-mode magit markdown-mode neotree org-babel ox-asciidoc ox-gfm plantuml-mode projectile quelpa quelpa-use-package tide typescript-mode use-package vimrc-mode yaml-mode)))
+      (doom-modeline vterm ox-reveal cask-mode ivy-taskrunner emacs-taskrunner bui zoom-frm fish-mode third second first all-the-icons asciidoc buffer-move cheat dashboard editorconfig evil evil-collection evil-numbers fill-column-indicator flycheck-pycheckers fold-dwim format-sql htmlize ivy js2-mode json-mode magit markdown-mode neotree org-babel ox-asciidoc ox-gfm plantuml-mode projectile quelpa quelpa-use-package tide typescript-mode use-package vimrc-mode yaml-mode)))
  '(pos-tip-background-color "#FFFACE")
  '(pos-tip-foreground-color "#272822")
  '(vc-annotate-background nil)
