@@ -27,15 +27,23 @@
 (setq org-publish-project-alist nil)
 (load-file "~/notes/init.el")
 
+(defun custom-org-keybindings ()
+  "Setup custom keybindings for org-mode"
+  (local-set-key (kbd "C-c L") #'org-toggle-link-display)
+  (local-set-key (kbd "C-c i") (lambda () (org-display-inline-images t t)))
+)
+
 ;; customization of org behavior
 (with-eval-after-load 'org
   (setq org-src-fontify-natively t)
   (setq org-html-doctype "html5")
+  (add-hook 'org-mode-hook #'custom-org-keybindings)
   (add-hook 'org-mode-hook #'visual-line-mode)
   (setq org-todo-keywords
     '((sequence "TODO" "BUG" "NOW" "LATER" "CHECK" "|" "DONE" "CANCELED")))
   (setq org-log-done 'time)
-
+  ;; don't ask to evaluate source code block 
+  (setq org-confirm-babel-evaluate nil)
   ;; activate shell language for babel
   (org-babel-do-load-languages 'org-babel-load-languages
     '((shell t))

@@ -12,11 +12,16 @@
   (global-set-key (kbd "<f5>") 'evil-ex-sort)
   (global-set-key (kbd "C-x n RET") 'evil-next-buffer)
   (global-set-key (kbd "C-x N RET") 'evil-prev-buffer)
-  ;; deactivate evil when needed (lin
-  (evil-set-initial-state 'ibuffer-mode 'normal)
-  (evil-set-initial-state 'bookmark-bmenu-mode 'normal)
+  ;; deactivate evil when needed
+  (evil-set-initial-state 'ibuffer-mode 'emacs)
+  (evil-set-initial-state 'bookmark-bmenu-mode 'emacs)
   (evil-set-initial-state 'dired-mode 'emacs)
   (evil-set-initial-state 'sunrise-mode 'emacs)
+  (evil-define-key 'insert global-map (kbd "<down>") 'evil-next-line)
+  (evil-define-key 'insert global-map (kbd "<up>") 'evil-previous-line)
+  (evil-define-key 'insert global-map (kbd "<left>") 'evil-backward-char)
+  (evil-define-key 'insert global-map (kbd "<right>") 'evil-forward-char)
+
   (evil-mode 1)
 )
 
