@@ -27,6 +27,7 @@ There are two things you can do about this warning:
 (setq gnutls-algorithm-priority "NORMAL:-VERS-TLS1.3")
 (setq package-check-signature nil)
 (add-to-list 'package-unsigned-archives "undo-tree")
+(add-to-list 'load-path "~/.emacs.d/deps")
 
 (unless (package-installed-p 'use-package)
   (package-refresh-contents)
@@ -45,11 +46,3 @@ There are two things you can do about this warning:
 ))
 
 (require 'quelpa-use-package)
-
-(use-package manager
-  :quelpa ((manager :fetcher github :repo "pbellon/emacs-package-manager")
-            :upgrade nil)
-  :config
-  (setq manager/dependencies-config-dir "~/.emacs.d/packages")
-  (manager/load-dependencies))
-
