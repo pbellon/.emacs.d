@@ -6,6 +6,27 @@
   (setq org-html-htmlize-output-type 'css)
   ;; (setq org-html-htmlize-font-prefix "") ;; default
   (setq org-html-htmlize-font-prefix "org-")
+
+  (progn
+    ;; It is required to disable `fci-mode' when `htmlize-buffer' is called;
+    ;; otherwise the invisible fci characters show up as funky looking
+    ;; visible characters in the source code blocks in the html file.
+    ;; http://lists.gnu.org/archive/html/emacs-orgmode/2014-09/msg00777.html
+    (with-eval-after-load 'fill-column-indicator
+      (defvar modi/htmlize-initial-fci-state nil
+        "Variable to store the state of `fci-mode' when `htmlize-buffer' is called.")
+
+      (defun modi/htmlize-before-hook-fci-disable ()
+        (setq modi/htmlize-initial-fci-state fci-mode)
+        (when fci-mode
+          (fci-mode -1)))
+
+      (defun modi/htmlize-after-hook-fci-enable-maybe ()
+        (when modi/htmlize-initial-fci-state
+          (fci-mode 1)))
+
+      (add-hook 'htmlize-before-hook #'modi/htmlize-before-hook-fci-disable)
+      (add-hook 'htmlize-after-hook #'modi/htmlize-after-hook-fci-enable-maybe)))
 )
 
 ;; markdown export backend
