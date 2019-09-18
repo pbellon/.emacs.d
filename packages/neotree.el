@@ -2,10 +2,9 @@
     "Change the neotree current folder to match the one of the current opened file"
     (interactive)
     (neotree-dir default-directory))
-  
 
 (use-package neotree
-  :after (projectile evil all-the-icons)
+  :after (projectile all-the-icons)
   :ensure t
   :config
   (setq neo-theme (if (display-graphic-p) 'icons 'arrow))
@@ -26,19 +25,20 @@
       "projectile-bookmarks.eld"
     )
   )
-  (evil-define-key 'normal neotree-mode-map (kbd "r") 'neotree-refresh)
-  (evil-define-key 'normal neotree-mode-map (kbd "s") 'neotree-enter-horizontal-split)
-  (evil-define-key 'normal neotree-mode-map (kbd "TAB") 'neotree-enter)
-  (evil-define-key 'normal neotree-mode-map (kbd "SPC") 'neotree-quick-look)
-  (evil-define-key 'normal neotree-mode-map (kbd "q") 'neotree-hide)
-  (evil-define-key 'normal neotree-mode-map (kbd "RET") 'neotree-enter)
-  (evil-define-key 'normal neotree-mode-map (kbd "g") 'neotree-refresh)
-  (evil-define-key 'normal neotree-mode-map (kbd "n") 'neotree-next-line)
-  (evil-define-key 'normal neotree-mode-map (kbd "p") 'neotree-previous-line)
-  (evil-define-key 'normal neotree-mode-map (kbd "A") 'neotree-stretch-toggle)
-  (evil-define-key 'normal neotree-mode-map (kbd "H") 'neotree-hidden-file-toggle)
-  (evil-define-key 'normal neotree-mode-map (kbd "R") 'neotree-change-root)
-  (evil-define-key 'normal neotree-mode-map (kbd "d") 'neotree-delete-node)
+  (define-key neotree-mode-map (kbd "r")   'neotree-refresh)
+  (define-key neotree-mode-map (kbd "s")   'neotree-enter-horizontal-split)
+  (define-key neotree-mode-map (kbd "TAB") 'neotree-enter)
+  (define-key neotree-mode-map (kbd "SPC") 'neotree-quick-look)
+  (define-key neotree-mode-map (kbd "q")   'neotree-hide)
+  (define-key neotree-mode-map (kbd "RET") 'neotree-enter)
+  (define-key neotree-mode-map (kbd "g")   'neotree-refresh)
+  (define-key neotree-mode-map (kbd "n")   'neotree-next-line)
+  (define-key neotree-mode-map (kbd "p")   'neotree-previous-line)
+  (define-key neotree-mode-map (kbd "A")   'neotree-stretch-toggle)
+  (define-key neotree-mode-map (kbd "H")   'neotree-hidden-file-toggle)
+  (define-key neotree-mode-map (kbd "R")   'neotree-change-root)
+  (define-key neotree-mode-map (kbd "d")   'neotree-delete-node)
+
   (global-set-key (kbd "C-x n g") 'neotree-go-to-file)
   (global-set-key (kbd "C-x n f") 'neotree-find)
 )
