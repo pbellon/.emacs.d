@@ -8,6 +8,15 @@
 (prefer-coding-system 'utf-8)
 (setq coding-system-for-read 'utf-8)
 (setq coding-system-for-write 'utf-8)
+(setq inhibit-eol-conversion 1)
+
+(defun remove-dos-eol ()
+  "Do not show ^M in files containing mixed UNIX and DOS line endings."
+  (interactive)
+  (setq buffer-display-table (make-display-table))
+  (aset buffer-display-table ?\^M []))
+
+(add-hook 'text-mode-hook 'remove-dos-eol)
 
 (load "~/.emacs.d/functions.el")
 (load "~/.emacs.d/keybindings.el")
