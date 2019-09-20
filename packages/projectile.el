@@ -1,3 +1,13 @@
+(defun load-project-file-if-exists (fn)
+  (let ((path (projectile-expand-root fn)))
+    (message "going to load %s if exists" path)
+    (if (file-exists-p path)
+      (load-file path))))
+
+(defun after-switch-project-hook-callback ()
+  (message "hook callback called !")
+  (load-project-file-if-exists "project.el"))
+
 (use-package projectile
   :ensure t
   :config
@@ -27,4 +37,6 @@
                   "*.swn") projectile-globally-ignored-file-suffixes))
   :init
   (projectile-mode 1)
-  (define-key projectile-mode-map (kbd "M-p") 'projectile-command-map))
+  (define-key projectile-mode-map (kbd "M-p") 'projectile-command-map)
+
+  :hook (projectile-after-switch-project . after-switch-project-hook-callback))
