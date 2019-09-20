@@ -54,12 +54,22 @@
   (local-set-key (kbd "C-c i") (lambda () (org-display-inline-images t t)))
 )
 
+(defun org-refresh ()
+  "Refresh parsed tree for current buffer"
+  (interactive)
+  (org-set-regexps-and-options))
+
+(defun fixed-font-on-needing-blocks ()
+  (set-face-attribute 'org-table nil :inherit 'fixed-pitch))
+
 ;; customization of org behavior
 (with-eval-after-load 'org
   (setq org-src-fontify-natively t)
   (setq org-html-doctype "html5")
   (add-hook 'org-mode-hook #'custom-org-keybindings)
   (add-hook 'org-mode-hook #'visual-line-mode)
+  (add-hook 'org-mode-hook #'fixed-font-on-needing-blocks)
+
   (setq org-todo-keywords
     '((sequence "TODO" "BUG" "NOW" "LATER" "CHECK" "|" "DONE" "CANCELED")))
   (setq org-log-done 'time)
