@@ -8,6 +8,8 @@
 (prefer-coding-system 'utf-8)
 (setq coding-system-for-read 'utf-8)
 (setq coding-system-for-write 'utf-8)
+
+;; set to nil to convert DOS EOL to UNIX on save
 (setq inhibit-eol-conversion 1)
 
 (defun remove-dos-eol ()
@@ -16,7 +18,7 @@
   (setq buffer-display-table (make-display-table))
   (aset buffer-display-table ?\^M []))
 
-(add-hook 'text-mode-hook 'remove-dos-eol)
+;; (add-hook 'text-mode-hook 'remove-dos-eol)
 
 (load "~/.emacs.d/functions.el")
 (load "~/.emacs.d/keybindings.el")
