@@ -9,12 +9,22 @@
 (setq coding-system-for-read 'utf-8)
 (setq coding-system-for-write 'utf-8)
 
+;; set to nil to convert DOS EOL to UNIX on save
+(setq inhibit-eol-conversion 1)
+
+(defun remove-dos-eol ()
+  "Do not show ^M in files containing mixed UNIX and DOS line endings."
+  (interactive)
+  (setq buffer-display-table (make-display-table))
+  (aset buffer-display-table ?\^M []))
+
+;; (add-hook 'text-mode-hook 'remove-dos-eol)
+
 (load "~/.emacs.d/functions.el")
 (load "~/.emacs.d/keybindings.el")
 (load "~/.emacs.d/packages.el")
-(load "~/.emacs.d/packages.el")
-(load "~/.emacs.d/hooks.el")
 (load "~/.emacs.d/themes.el")
+(load "~/.emacs.d/hooks.el")
 
 ;; TODO
 ;; (if (should-use-exwm)
@@ -52,7 +62,7 @@
  '(markdown-command "md2html")
  '(package-selected-packages
     (quote
-      (doom-modeline vterm ox-reveal cask-mode ivy-taskrunner emacs-taskrunner bui zoom-frm fish-mode third second first all-the-icons asciidoc buffer-move cheat dashboard editorconfig evil evil-collection evil-numbers fill-column-indicator flycheck-pycheckers fold-dwim format-sql htmlize ivy js2-mode json-mode magit markdown-mode neotree org-babel ox-asciidoc ox-gfm plantuml-mode projectile quelpa quelpa-use-package tide typescript-mode use-package vimrc-mode yaml-mode)))
+      (go-mode go lua-mode moody minions spaceline doom-modeline vterm ox-reveal cask-mode ivy-taskrunner emacs-taskrunner bui zoom-frm fish-mode third second first all-the-icons asciidoc buffer-move cheat dashboard editorconfig evil evil-collection evil-numbers fill-column-indicator flycheck-pycheckers fold-dwim format-sql htmlize ivy js2-mode json-mode magit markdown-mode neotree org-babel ox-asciidoc ox-gfm plantuml-mode projectile quelpa quelpa-use-package tide typescript-mode use-package vimrc-mode yaml-mode)))
  '(pos-tip-background-color "#FFFACE")
  '(pos-tip-foreground-color "#272822")
  '(vc-annotate-background nil)

@@ -1,5 +1,15 @@
 (require 'package)
-(let* ((no-ssl (and (memq system-type '(windows-nt ms-dos))
+
+(setq pkgs-folder "~/.emacs.d/packages")
+
+(defun load-pkg (pkg-name)
+  (load (expand-file-name (format "%s/%s" pkgs-folder pkg-name))))
+
+(defun list-pkgs ()
+  "Return all proper lisp files from pkgs-folder"
+  (directory-files (expand-file-name (format "%s/" pkgs-folder)) nil "[a-z][a-z-]+.el$"))
+  
+(let* ((no-ssl (and (on-windows)
                     (not (gnutls-available-p))))
        (proto (if no-ssl "http" "https")))
   (when no-ssl
@@ -27,6 +37,7 @@ There are two things you can do about this warning:
 (setq gnutls-algorithm-priority "NORMAL:-VERS-TLS1.3")
 (setq package-check-signature nil)
 (add-to-list 'package-unsigned-archives "undo-tree")
+(add-to-list 'load-path "~/.emacs.d/deps")
 
 (unless (package-installed-p 'use-package)
   (package-refresh-contents)
@@ -37,19 +48,15 @@ There are two things you can do about this warning:
 (use-package quelpa
   :ensure t
   :config
-  (quelpa
-   '(quelpa-use-package
-     :fetcher git
-     :url "https://framagit.org/steckerhalter/quelpa-use-package.git")
-   :upgrade t
-))
+  )
 
-(require 'quelpa-use-package)
-
-(use-package manager
-  :quelpa ((manager :fetcher github :repo "pbellon/emacs-package-manager")
-            :upgrade nil)
+(use-package quelpa-use-package
+  :ensure t
+  :after (quelpa)
   :config
-  (setq manager/dependencies-config-dir "~/.emacs.d/packages")
-  (manager/load-dependencies))
+  (mapc 'load-pkg (list-pkgs))
+)
+
+
+
 

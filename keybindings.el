@@ -1,9 +1,6 @@
 ; KEY BINDINGS
 (global-set-key (kbd "C-c /") #'comment-or-uncomment-region)
 
-;; toggle link display
-(global-set-key (kbd "C-c L") #'org-toggle-link-display)
-
 ;; execute expression (under pointer)
 (global-set-key (kbd "C-x C-e") #'eval-last-sexp)
 ;; execute region

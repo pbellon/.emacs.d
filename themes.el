@@ -1,18 +1,26 @@
 ;;; global theme
+(defun reload-theme-with (use-light)
+  (if (not (eq use-light nil))
+    (load-theme 'one-light t)
+    (load-theme 'one-dark t)
+  ))
+
 (defcustom use-light-theme nil
   "Check to use the light theme"
-  :type 'bool
-  :group 'theme
+  :set (lambda (symbol value)
+         (message "value changed %s %s" format value)
+         (reload-theme-with (or value 0)))
+  :type 'boolean
+  :group 'themes
+  :initialize 'custom-initialize-changed
 )
-(setq use-light-theme nil)
+
+
 
 (defun reload-theme ()
   "Forces emacs to reload the configured theme"
   (interactive)
-  (if (not (eq use-light-theme nil))
-    (load-theme 'one-light t)
-    (load-theme 'one-dark t)
-  )
+  (reload-theme-with 'use-light-theme)
 )
 
 (use-package one-themes
@@ -32,24 +40,19 @@
 ;;   (sml/setup)
 ;; )
 
-(use-package doom-modeline
-  :ensure t
-  :quelpa (doom-modeline :fetcher github :repo "seagle0128/doom-modeline")
-  :after (all-the-icons)
-  :config
-  (doom-modeline-mode 1))
-
 
 ;;; Fonts
 (setq ia-writer-duospace "iA Writer Duospace")
 (setq ia-writer-duo-v "iA Writer Duo V")
 (setq ia-writer-mono-s "iA Writer Mono S")
 
-(defun with-variable-width-font (font-family-name)
-  (setq buffer-face-mode-face '(:family font-family-name :height 100 :width semi-condensed))
-  (buffer-face-mode))
+(defun with-fixed-width-font (font-family-name)
+  (face-remap-add-relative 'default :family font-family-name :height 100 :width 50))
 
-(defun with-ia-writer-duospace-variable ()
+(defun with-variable-width-font (font-family-name)
+  (face-remap-add-relative 'default :family font-family-name :height 100 :width 'semi-condensed))
+
+(defun with-ia-writer-duospace ()
   (interactive)
   (with-variable-width-font ia-writer-duospace))
 
@@ -61,4 +64,4 @@
   (interactive)
   (with-fixed-width-font ia-writer-mono-s))
   
-(add-hook 'org-mode-hook 'with-ia-writer-mono)
+(add-hook 'org-mode-hook 'with-ia-writer-duospace)

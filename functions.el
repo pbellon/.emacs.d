@@ -1,3 +1,7 @@
+;; Check if running emacs on windows
+(defun on-windows ()
+  "Returns true if running emacs on windows"
+  (memq system-type '(windows-nt ms-dos)))
 
 ;; buffer management (bm)
 ;; load-file the current buffer file
