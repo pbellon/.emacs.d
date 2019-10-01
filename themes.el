@@ -1,31 +1,23 @@
 ;;; global theme
-(defun reload-theme-with (use-light)
-  (if (not (eq use-light nil))
-    (load-theme 'one-light t)
-    (load-theme 'one-dark t)
-  ))
 
-(defcustom use-light-theme nil
+(defcustom use-light-theme t
   "Check to use the light theme"
-  :set (lambda (symbol value)
-         (message "value changed %s %s" format value)
-         (reload-theme-with (or value 0)))
-  :type 'boolean
   :group 'themes
-  :initialize 'custom-initialize-changed
+  :type 'boolean
 )
-
 
 
 (defun reload-theme ()
   "Forces emacs to reload the configured theme"
   (interactive)
-  (reload-theme-with 'use-light-theme)
-)
+  (if 'use-light-theme
+    (load-theme 'one-light t)
+    (load-theme 'one-dark t)
+  ))
 
 (use-package one-themes
   :ensure t
-  :init
+  :config
   (reload-theme))
 
 ;;; mode lines
