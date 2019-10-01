@@ -8,6 +8,11 @@
 (defun list-pkgs ()
   "Return all proper lisp files from pkgs-folder"
   (directory-files (expand-file-name (format "%s/" pkgs-folder)) nil "[a-z][a-z-]+.el$"))
+
+(defun load-pkgs ()
+  "Will reload all packages under 'pkg-folder"
+  (interactive)
+  (mapc 'load-pkg (list-pkgs)))
   
 (let* ((no-ssl (and (on-windows)
                     (not (gnutls-available-p))))
@@ -45,18 +50,12 @@ There are two things you can do about this warning:
 
 (require 'use-package)
 
-(use-package quelpa
-  :ensure t
-  :config
-  )
+(use-package quelpa :ensure t)
 
 (use-package quelpa-use-package
   :ensure t
   :after (quelpa)
   :config
-  (mapc 'load-pkg (list-pkgs))
+  ;; this allows us to automatically load all elisp files under <emacs dir>/packages/
+  (load-pkgs)
 )
-
-
-
-
