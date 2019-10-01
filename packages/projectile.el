@@ -35,8 +35,14 @@
                   "*.log"
                   "*#"
                   "*.swn") projectile-globally-ignored-file-suffixes))
-  :init
-  (projectile-mode 1)
   (define-key projectile-mode-map (kbd "M-p") 'projectile-command-map)
-
   :hook (projectile-after-switch-project . after-switch-project-hook-callback))
+
+
+(use-package counsel-projectile
+  :ensure t
+  :after (counsel projectile)
+  :config
+  (counsel-projectile-mode 1)
+)
+
