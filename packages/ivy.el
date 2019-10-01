@@ -1,5 +1,11 @@
+(use-package counsel
+  :ensure t)
+(use-package swiper
+  :ensure t)
+
 (use-package ivy
   :ensure t
+  :after (swiper counsel)
   :config
   (setq ivy-use-virtual-buffers t)
   (setq enable-recursive-minibuffers t)
@@ -20,6 +26,7 @@
   :after (ivy swiper)
   :ensure t
   :config
+  (global-set-key (kbd "<f6>") 'ivy-resume)
   (global-set-key (kbd "M-x") 'counsel-M-x)
   (global-set-key (kbd "C-x C-f") 'counsel-find-file)
   (global-set-key (kbd "<f1> f") 'counsel-describe-function)
@@ -33,8 +40,5 @@
   (global-set-key (kbd "C-x l") 'counsel-locate)
   (global-set-key (kbd "C-S-o") 'counsel-rhythmbox)
   (define-key minibuffer-local-map (kbd "C-r") 'counsel-minibuffer-history)
-  
   (add-to-list 'ivy-initial-inputs-alist '(counsel-M-x . "")) ;; for
-
-  
 )
