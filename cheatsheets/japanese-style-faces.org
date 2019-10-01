@@ -1,7 +1,10 @@
-#+SOURCE: https://wikileaks.org/ciav7p1/cms/page_17760284.html
 #+TITLE: Japanese Style Faces
 #+DESCRIPTION: A list of japanese smileys/emojis
+#+COMMAND: japanese-style-faces
+#+CATEGORY: Lulz
+#+SOURCE: https://wikileaks.org/ciav7p1/cms/page_17760284.html
 
+* Test
 ¢‿¢
 ©¿© o
 ª{•̃̾_•̃̾}ª
