@@ -1,3 +1,13 @@
+#+TITLE: My keyboard shortcuts
+#+CATEGORY: Emacs
+#+DESCRIPTION: Custom set of keybindings
+#+COMMAND: keybindings
+
+* Elisp evaluation 
+| C-x C-r | =eval-region= | Evaluate the current selected region |
+
+* Buffer management
+
 * Neotree
 | =C-x n f= | =neotree-find=       | Locate the current file in neotree                                    |
 | =C-x n g= | =neotree-go-to-file= | Change the current neotree folder to be the one of the current buffer |
