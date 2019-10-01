@@ -62,6 +62,22 @@
 (defun fixed-font-on-needing-blocks ()
   (set-face-attribute 'org-table nil :inherit 'fixed-pitch))
 
+
+;;; took from https://stackoverflow.com/questions/25930097/emacs-org-mode-quickly-mark-todo-as-done/25942392#25942392
+(defun org-set-to-done ()
+  (interactive)
+  (save-excursion
+    (org-back-to-heading t) ;; Make sure command works even if point is
+                            ;; below target heading
+    (cond ((looking-at "\*+ TODO")
+           (org-todo "DONE")
+           (hide-subtree))
+          ((looking-at "\*+ DONE")
+           (org-todo "TODO")
+           (hide-subtree))
+          (t (message "Can only toggle between TODO and DONE.")))))
+
+
 ;; customization of org behavior
 (with-eval-after-load 'org
   (setq org-src-fontify-natively t)
@@ -71,7 +87,7 @@
   (add-hook 'org-mode-hook #'fixed-font-on-needing-blocks)
 
   (setq org-todo-keywords
-    '((sequence "TODO" "BUG" "NOW" "LATER" "CHECK" "|" "DONE" "CANCELED")))
+    '((sequence "TODO" "NOW" "LATER" "CHECK" "|" "DONE" "CANCELED" "DELEGATED")))
   (setq org-log-done 'time)
   ;; don't ask to evaluate source code block 
   (setq org-confirm-babel-evaluate nil)
@@ -79,4 +95,6 @@
   (org-babel-do-load-languages 'org-babel-load-languages
     '((shell t))
   )
+  
+  (define-key org-mode-map (kbd "C-c D") 'org-set-to-done)
 )
