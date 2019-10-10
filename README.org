@@ -1,8 +1,11 @@
 #+TITLE:  Emacs configuration
-*  Features / modes
-- Vim edition shortcuts thanks to evil-mode
-- File menu similar to nerdtree with neotree
-- Packages dependencies with use-package, see packages/setup.el
+* Global structure
+- ~init.el~ main configuration file, holds customized variables & loading of all setup files
+- ~functions.el~ global generic function
+- ~hooks.el~ global mode & hooks settings --> should be deleted.
+- ~keybindings.el~ basic keybindings for "native" functions of emacs
+- ~packages.el~ dependencies setup & loading of all elisp files under ~packages/~
+~ ~packages/*.el~ per mode / dependency configuration
 
 * Custom functions
 - `bm/kill-this-buffer` kill the active buffer & close its frame
@@ -16,6 +19,26 @@
 | ~C-x C-k b~ | ~bm/kill-this-buffer~ | Will kill current buffer & exit frame |
 | ~C-x C-l~   | ~bm/load-buffer~      | Evaluate current buffer's content     |
 
-== Other dependencies included
-- asciidoc
-- fill-column-indicator
+* Used packages
+| all-the-icons      | Better icons for emacs modes & packages                                                |
+| cheat              | Cheatsheets for emacs (based on org-mode)                                              |
+| dashboard          | nice minimalist splash screen for emacs showing recent files, projects & bookmarks     |
+| evil               | Vim layer for emacs                                                                    |
+| evil-collection    | Additional keybindings for evil                                                        |
+| ivy-taskrunner     | Runs scripts from emacs such as npm, make etc...                                       |
+| magit              | Git integration in emacs                                                               |
+| neotree            | folder tree buffer similar to vim's nerdtree                                           |
+| quelpa             | Git based dependencies for emacs                                                       |
+| quelpa-use-package | Adds ~:quelpa~ argument to use-package function                                        |
+| use-package        | All dependencies are configured with use-package                                       |
+| vterm              | Better shell integration with libvterm, needs manual installation, (see install vterm) |
+
+* Install vterm
+To be use you'll need to manually build emacs-libvterm which is included in this repository as a git submodule.
+
+#+BEGIN_SRC shell
+git submodule update --init
+#+END_SRC
+
+Then refers to ~emacs-libvterm/README.md~ to build it. Then you should be able to use vterm inside emacs in the next configuration loading (or if you call ~reload-config~ function).
+
