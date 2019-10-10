@@ -8,7 +8,7 @@
 (defun bm/load-buffer ()
   "Load the file associated to the current buffer"
   (interactive)
-  (load-file buffer-file-name))
+  (eval-buffer (current-buffer)))
 (global-set-key (kbd "C-x C-l") 'bm/load-buffer)  
 
 ;; kill the current buffer and quit its frame (with evil-quit)
