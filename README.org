@@ -8,11 +8,11 @@
 ~ ~packages/*.el~ per mode / dependency configuration
 
 * Custom functions
-- `bm/kill-this-buffer` kill the active buffer & close its frame
-- `bm/load-buffer` evaluate the content of the current buffer, useful when customizing emacs
+- ~bm/kill-this-buffer~ kill the active buffer & close its frame
+- ~bm/load-buffer~ evaluate the content of the current buffer, useful when customizing emacs
 
 * Main keybindings
-- ~C-x C-r~ calls `eval-region`
+- ~C-x C-r~ calls ~eval-region~
 ** Buffer management
 | Keybinding  | Function              | Description                           |
 |-------------+-----------------------+---------------------------------------|

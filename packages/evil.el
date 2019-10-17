@@ -18,6 +18,7 @@
   (evil-set-initial-state 'dired-mode 'emacs)
   (evil-set-initial-state 'sunrise-mode 'emacs)
   (evil-set-initial-state 'neotree-mode 'emacs)
+  (evil-set-initial-state 'dashboard-mode 'emacs)
   (evil-define-key 'insert global-map (kbd "<down>") 'evil-next-line)
   (evil-define-key 'insert global-map (kbd "<up>") 'evil-previous-line)
   (evil-define-key 'insert global-map (kbd "<left>") 'evil-backward-char)
