@@ -21,4 +21,6 @@ eshell/
 transient/
 recentf
 taskrunner-tasks.eld
+
+.cache
 *.desktop

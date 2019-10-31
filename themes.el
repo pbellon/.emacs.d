@@ -1,11 +1,12 @@
 ;;; global theme
 
-(defcustom use-light-theme t
+(defcustom use-light-theme nil
   "Check to use the light theme"
   :group 'themes
   :type 'boolean
 )
 
+(setq use-light-theme nil)
 
 (defun reload-theme ()
   "Forces emacs to reload the configured theme"

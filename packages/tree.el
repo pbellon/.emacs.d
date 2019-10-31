@@ -1,4 +1,4 @@
-;;; tree.el --- Configuration of dir/tree based navigation -*- lexical-binding: t; coding: utf-8 -*- 
+;;; tree.el --- Configuration of dir/tree based navigation -*- lexical-binding: t; coding: utf-8 -*-
 
 ;; (defun neotree-go-to-file ()
 ;;     "Change the neotree current folder to match the one of the current opened file"
@@ -44,16 +44,14 @@
 ;;   (global-set-key (kbd "C-x n g") 'neotree-go-to-file)
 ;;   (global-set-key (kbd "C-x n f") 'neotree-find)
 ;; )
-
-
 (use-package treemacs
   :ensure t
   :defer t
   :bind
   (:map global-map
-    ("M-0" . treemacs-select-window)
+    ("C-c f" . treemacs-select-window)
     ("C-x t D" . treemacs-delete-other-windows)
-    ("C-x t t" . treemacs)
+    ("<f8>" . treemacs)
     ("C-x t B" . treemacs-bookmark)
   )
 )
