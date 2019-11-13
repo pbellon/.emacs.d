@@ -23,7 +23,13 @@
   (evil-define-key 'insert global-map (kbd "<up>") 'evil-previous-line)
   (evil-define-key 'insert global-map (kbd "<left>") 'evil-backward-char)
   (evil-define-key 'insert global-map (kbd "<right>") 'evil-forward-char)
-
+  (evil-define-command evil-vertical-split-buffer (buffer)
+    "Switches to another buffer with vertical split"
+    :repeat nil
+    (interactive "<b>")
+    (evil-window-vsplit)
+    (evil-buffer buffer))
+  (evil-ex-define-cmd "vsb[uffer]" 'evil-vertical-split-buffer)
   (evil-mode 1)
 )
 

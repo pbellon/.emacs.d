@@ -1,5 +1,8 @@
-(require 'cheat)
-(setq cheat/categories '(
+(use-package cheat
+  :quelpa (cheat :fetcher github :repo "pbellon/cheat")
+  :config
+  
+  (setq cheat/categories '(
      "JavaScript"
      "Emacs"
      "Markup"
@@ -10,7 +13,8 @@
      "Ruby"
      "Python"
      "LULZ"
-))
+     ))
                         
-(add-to-list 'cheat/sheets-folders "~/.emacs.d/cheatsheets/")
-(cheat/setup)
+  (add-to-list 'cheat/sheets-folders "~/.emacs.d/cheatsheets/")
+  (cheat/setup)
+)

@@ -4,32 +4,8 @@
 ;; You may delete these explanatory comments.
 (require 'package)
 (require 'subr-x)
-;; setting coding-system
-(prefer-coding-system 'utf-8)
-(setq coding-system-for-read 'utf-8)
-(setq coding-system-for-write 'utf-8)
 
-;; set to nil to convert DOS EOL to UNIX on save
-(setq inhibit-eol-conversion 1)
-
-(defun remove-dos-eol ()
-  "Do not show ^M in files containing mixed UNIX and DOS line endings."
-  (interactive)
-  (setq buffer-display-table (make-display-table))
-  (aset buffer-display-table ?\^M []))
-
-;; (add-hook 'text-mode-hook 'remove-dos-eol)
-
-(load "~/.emacs.d/functions.el")
-(load "~/.emacs.d/keybindings.el")
-(load "~/.emacs.d/packages.el")
-(load "~/.emacs.d/themes.el")
-(load "~/.emacs.d/hooks.el")
-
-;; TODO
-;; (if (should-use-exwm)
-;;   (with-exwm))
-
+(load-file "~/.emacs.d/setup.el")
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
@@ -64,7 +40,7 @@
  '(markdown-command "md2html")
  '(package-selected-packages
     (quote
-      (wttrin treemacs-magit treemacs-icons-dired hydra treemacs-projectile treemacs-evil treemacs lorem-ipsum mermaid-mode imenu-list counsel-projectile counsel go-mode lua-mode moody minions vterm ox-reveal cask-mode ivy-taskrunner emacs-taskrunner bui fish-mode all-the-icons asciidoc buffer-move cheat dashboard editorconfig evil evil-collection evil-numbers fill-column-indicator flycheck-pycheckers fold-dwim format-sql htmlize ivy js2-mode json-mode magit markdown-mode neotree org-babel ox-asciidoc ox-gfm plantuml-mode projectile quelpa quelpa-use-package tide typescript-mode use-package vimrc-mode yaml-mode)))
+      (web-mode company taskrunner evil-multiedit dash wttrin treemacs-magit treemacs-icons-dired hydra treemacs-projectile treemacs-evil treemacs lorem-ipsum mermaid-mode imenu-list counsel-projectile counsel go-mode lua-mode moody minions vterm ox-reveal cask-mode ivy-taskrunner emacs-taskrunner bui fish-mode all-the-icons asciidoc buffer-move cheat dashboard editorconfig evil evil-collection evil-numbers fill-column-indicator flycheck-pycheckers fold-dwim format-sql htmlize ivy js2-mode json-mode magit markdown-mode neotree org-babel ox-asciidoc ox-gfm plantuml-mode projectile quelpa quelpa-use-package tide typescript-mode use-package vimrc-mode yaml-mode)))
  '(pos-tip-background-color "#FFFACE")
  '(pos-tip-foreground-color "#272822")
  '(vc-annotate-background nil)

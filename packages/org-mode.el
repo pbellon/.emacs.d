@@ -87,7 +87,7 @@
   (add-hook 'org-mode-hook #'fixed-font-on-needing-blocks)
 
   (setq org-todo-keywords
-    '((sequence "TODO" "NOW" "LATER" "CHECK" "|" "DONE" "CANCELED" "DELEGATED")))
+    '((sequence "TODO" "NOW" "LATER" "REVIEW" "|" "DONE" "CANCELED" "DELEGATED")))
   (setq org-log-done 'time)
   ;; don't ask to evaluate source code block 
   (setq org-confirm-babel-evaluate nil)

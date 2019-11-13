@@ -50,3 +50,9 @@
   "Move the current line down by N lines."
   (interactive "p")
   (move-line (if (null n) 1 n)))
+
+(defun remove-dos-eol ()
+  "Do not show ^M in files containing mixed UNIX and DOS line endings."
+  (interactive)
+  (setq buffer-display-table (make-display-table))
+  (aset buffer-display-table ?\^M []))
