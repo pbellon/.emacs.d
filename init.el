@@ -36,11 +36,12 @@
         ("#A75B00" . 70)
         ("#F309DF" . 85)
         ("#3C3D37" . 100))))
+ '(line-number-mode nil)
  '(magit-diff-use-overlays nil)
  '(markdown-command "md2html")
  '(package-selected-packages
     (quote
-      (web-mode company taskrunner evil-multiedit dash wttrin treemacs-magit treemacs-icons-dired hydra treemacs-projectile treemacs-evil treemacs lorem-ipsum mermaid-mode imenu-list counsel-projectile counsel go-mode lua-mode moody minions vterm ox-reveal cask-mode ivy-taskrunner emacs-taskrunner bui fish-mode all-the-icons asciidoc buffer-move cheat dashboard editorconfig evil evil-collection evil-numbers fill-column-indicator flycheck-pycheckers fold-dwim format-sql htmlize ivy js2-mode json-mode magit markdown-mode neotree org-babel ox-asciidoc ox-gfm plantuml-mode projectile quelpa quelpa-use-package tide typescript-mode use-package vimrc-mode yaml-mode)))
+      (eldoc-box eslintd-fix ag lsp-mode prettier-js web-mode company taskrunner evil-multiedit dash wttrin treemacs-magit treemacs-icons-dired hydra treemacs-projectile treemacs-evil treemacs lorem-ipsum mermaid-mode imenu-list counsel-projectile counsel go-mode lua-mode moody minions vterm ox-reveal cask-mode ivy-taskrunner emacs-taskrunner bui fish-mode all-the-icons asciidoc buffer-move cheat dashboard editorconfig evil evil-collection evil-numbers fill-column-indicator flycheck-pycheckers fold-dwim format-sql htmlize ivy js2-mode json-mode magit markdown-mode neotree org-babel ox-asciidoc ox-gfm plantuml-mode projectile quelpa quelpa-use-package tide typescript-mode use-package vimrc-mode yaml-mode)))
  '(pos-tip-background-color "#FFFACE")
  '(pos-tip-foreground-color "#272822")
  '(vc-annotate-background nil)

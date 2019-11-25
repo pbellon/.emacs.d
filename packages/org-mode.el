@@ -77,6 +77,35 @@
            (hide-subtree))
           (t (message "Can only toggle between TODO and DONE.")))))
 
+(defun get-org-keywords ()
+  "Parse the buffer and return a cons list of (property . value)"
+  (org-element-map (org-element-parse-buffer 'element) 'keyword
+    (lambda (keyword) (cons
+                        (org-element-property :key keyword)
+                        (org-element-property :value keyword)))))
+  
+(defun get-org-keyword (key &optional kwds)
+  "return the value associated to key"
+  (unless kwds (setq kwds (get-org-keywords)))
+  (cdr (assoc key props)))
+
+;; (use-package flyspell
+;;   :ensure t
+;;   :config
+;;   (setq org-dictionnaries 
+;;     '(
+;;        ("fr" . "francais")
+;;        ("en" . "english")
+;;      )
+;;   )
+ 
+;;   (defun configure-flyspell-for-org ()
+;;     (flyspell-mode 1)
+;;     (let* ((props (get-org-keywords)))
+;;       (let* ((lang (get-org-keyword "LANGUAGE" props)))
+;;         (ispell-change-dictionary (cdr (assoc lang org-dictionnaries)))))
+;;   )
+;;   (add-hook 'org-mode-hook #'configure-flyspell-for-org))
 
 ;; customization of org behavior
 (with-eval-after-load 'org
@@ -85,10 +114,8 @@
   (add-hook 'org-mode-hook #'custom-org-keybindings)
   (add-hook 'org-mode-hook #'visual-line-mode)
   (add-hook 'org-mode-hook #'fixed-font-on-needing-blocks)
-
   (setq org-todo-keywords
-    '((sequence "TODO" "NOW" "LATER" "REVIEW" "|" "DONE" "CANCELED" "DELEGATED")))
-  (setq org-log-done 'time)
+    '((sequence "TODO(t)" "NOW(n@/!)" "LATER" "REVIEW" "|" "INREVIEW" "DONE(D!)" "CANCELED(c@)" "DELEGATED(d)")))
   ;; don't ask to evaluate source code block 
   (setq org-confirm-babel-evaluate nil)
   ;; activate shell language for babel

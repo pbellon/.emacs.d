@@ -8,6 +8,8 @@
   (message "hook callback called !")
   (load-project-file-if-exists "project.el"))
 
+(use-package ag :ensure t)
+
 (use-package projectile
   :ensure t
   :config
@@ -43,6 +45,7 @@
                   "*.swp"
                   "*.log"
                   "*#"
+                  "*~"
                   "*.swn") projectile-globally-ignored-file-suffixes))
   (define-key projectile-mode-map (kbd "M-p") 'projectile-command-map)
   :hook (projectile-after-switch-project . after-switch-project-hook-callback))

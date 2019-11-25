@@ -39,7 +39,7 @@
   (global-set-key (kbd "C-c k") 'counsel-ag)
   (global-set-key (kbd "C-x l") 'counsel-locate)
   (global-set-key (kbd "C-S-o") 'counsel-rhythmbox)
-  (global-set-key (kbd "C-x B") 'counsel-ibuffer)
+  (global-set-key (kbd "C-x C-b") 'counsel-ibuffer)
   (define-key minibuffer-local-map (kbd "C-r") 'counsel-minibuffer-history)
   (add-to-list 'ivy-initial-inputs-alist '(counsel-M-x . "")) ;; for
 )

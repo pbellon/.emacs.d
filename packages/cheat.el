@@ -1,7 +1,6 @@
 (use-package cheat
-  :quelpa (cheat :fetcher github :repo "pbellon/cheat")
+  :quelpa (cheat :fetcher file :path "~/Dev/cheat/cheat.el")
   :config
-  
   (setq cheat/categories '(
      "JavaScript"
      "Emacs"
@@ -15,6 +14,7 @@
      "LULZ"
      ))
                         
+  (add-to-list 'cheat/sheets-folders "~/Dev/cheatsheets/")
   (add-to-list 'cheat/sheets-folders "~/.emacs.d/cheatsheets/")
   (cheat/setup)
 )
