@@ -43,6 +43,7 @@ There are two things you can do about this warning:
 (setq package-check-signature nil)
 (add-to-list 'package-unsigned-archives "undo-tree")
 (add-to-list 'load-path "~/.emacs.d/deps")
+(package-refresh-contents "U")
 
 (unless (package-installed-p 'use-package)
   (package-refresh-contents)
