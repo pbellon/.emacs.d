@@ -42,12 +42,6 @@
 )
 
 
-(use-package company
-  :ensure t
-  :config
-  ;; aligns annotation to the right hand side
-  (setq company-tooltip-align-annotations t))
-
 (defun split-and-jump-to-definition()
   "Split frame and jump to definition"
   (interactive)
@@ -85,6 +79,7 @@
  (global-set-key (kbd "M-/") 'tide-jump-to-implementation)
 
  (add-hook 'typescript-mode-hook #'setup-tide-mode)
+ (add-hook 'web-mode-hook #'setup-tide-mode)
 )
 
 (use-package prettier-js

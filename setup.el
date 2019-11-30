@@ -7,7 +7,8 @@
 ;; set to nil to convert DOS EOL to UNIX on save
 (setq inhibit-eol-conversion 1)
 
-(server-start)
+(if (not (boundp 'server-process))
+  (server-start))
 
 ;; (add-hook 'text-mode-hook 'remove-dos-eol)
 

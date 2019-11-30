@@ -6,6 +6,11 @@
   :type 'boolean
 )
 
+(use-package zenburn-theme
+  :ensure t
+  
+)
+
 (setq use-light-theme nil)
 
 (defun reload-theme ()
@@ -16,13 +21,7 @@
     (load-theme 'one-dark t)
   ))
 
-(use-package one-themes
-  :ensure t
-  :config
-  (reload-theme))
-
 ;;; mode lines
-
 ;; (use-package smart-mode-line
 ;;   :after one-themes
 ;;   :ensure t
