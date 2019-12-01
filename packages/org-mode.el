@@ -115,7 +115,7 @@
   (add-hook 'org-mode-hook #'visual-line-mode)
   (add-hook 'org-mode-hook #'fixed-font-on-needing-blocks)
   (setq org-todo-keywords
-    '((sequence "TODO(t)" "NOW(n@/!)" "LATER" "REVIEW" "|" "INREVIEW" "DONE(D!)" "CANCELED(c@)" "DELEGATED(d)")))
+    '((sequence "TODO(t)" "NOW(n)" "LATER(l)" "REVIEW(r)" "|" "INREVIEW(ir)" "DONE(D!)" "CANCELED(c)" "DELEGATED(d)")))
   ;; don't ask to evaluate source code block 
   (setq org-confirm-babel-evaluate nil)
   ;; activate shell language for babel

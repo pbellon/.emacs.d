@@ -1,31 +1,35 @@
 (use-package typescript-mode
   :ensure t
-)
+  )
 
-(defun use-eslint-from-node-modules ()
-  (let* ((root (locate-dominating-file
-                (or (buffer-file-name) default-directory)
-                "node_modules"))
-         (eslint (and root
-                      (expand-file-name "node_modules/.bin/eslint"
-                                        root))))
-    (when (and eslint (file-executable-p eslint))
-      (setq-local flycheck-javascript-eslint-executable eslint)
+(defun use-eslintd ()
+  (let* ((eslintd "/usr/bin/eslint_d"))
+    (when (and eslintd (file-executable-p eslintd))
+      (setq-local flycheck-javascript-eslint-executable eslintd)
       (flycheck-select-checker 'javascript-eslint)
     )))
 
+(defun use-eslint-from-node-modules ()
+  (let* ((root (locate-dominating-file
+                 (or (buffer-file-name) default-directory)
+                 "node_modules"))
+          (eslint (and root
+                    (expand-file-name "node_modules/.bin/eslint"
+                      root))))
+    (when (and eslint (file-executable-p eslint))
+      (setq-local flycheck-javascript-eslint-executable eslint)
+      (flycheck-select-checker 'javascript-eslint)
+      )))
+
 (defun use-prettier-from-node-modules ()
   (let* ((root (locate-dominating-file
-                (or (buffer-file-name) default-directory)
-                "node_modules"))
-         (prettier (and root
+                 (or (buffer-file-name) default-directory)
+                 "node_modules"))
+          (prettier (and root
                       (expand-file-name "node_modules/.bin/prettier"
-                                        root))))
+                        root))))
     (when (and prettier (file-executable-p prettier))
       (setq-local prettier-js-command prettier))))
-
-(defun use-eslintd ()
-  (setq-local flycheck-javascript-eslint-executable "/usr/bin/eslint_d"))
 
 (use-package flycheck
   :ensure t
@@ -37,9 +41,9 @@
   (flycheck-add-mode 'javascript-eslint 'web-mode)
   (flycheck-add-mode 'javascript-eslint 'typescript-mode)
   (setq-default flycheck-temp-prefix ".flycheck")
-  (add-hook 'flycheck-mode-hook #'use-eslint-from-node-modules)
   ;; (add-hook 'flycheck-mode-hook #'use-eslintd)
-)
+  (add-hook 'flycheck-mode-hook #'use-eslint-from-node-modules)
+  )
 
 
 (defun split-and-jump-to-definition()
@@ -68,19 +72,19 @@
   ;; install it separately via package-install
   ;; `M-x package-install [ret] company`
   (company-mode +1)
-)
+  )
 
 (use-package tide
- :ensure t
- :after (typescript-mode company flycheck)
- :config
- ;; (global-set-key (kbd "M->") 'split-and-jump-to-definition)
- (global-set-key (kbd "M->") 'tide-jump-to-definition)
- (global-set-key (kbd "M-/") 'tide-jump-to-implementation)
+  :ensure t
+  :after (typescript-mode company flycheck)
+  :config
+  ;; (global-set-key (kbd "M->") 'split-and-jump-to-definition)
+  (global-set-key (kbd "M->") 'tide-jump-to-definition)
+  (global-set-key (kbd "M-/") 'tide-jump-to-implementation)
 
- (add-hook 'typescript-mode-hook #'setup-tide-mode)
- (add-hook 'web-mode-hook #'setup-tide-mode)
-)
+  (add-hook 'typescript-mode-hook #'setup-tide-mode)
+  (add-hook 'web-mode-hook #'setup-tide-mode)
+  )
 
 (use-package prettier-js
   :ensure t
@@ -89,7 +93,7 @@
   (add-hook 'web-mode-hook #'prettier-js-mode)
   (add-hook 'typescript-mode-hook #'prettier-js-mode)
   (add-hook 'prettier-js-mode-hook #'use-prettier-from-node-modules)
-)
+  )
 
 (use-package eslintd-fix
   :ensure t
@@ -97,12 +101,13 @@
   (add-hook 'js2-mode-hook 'eslintd-fix-mode)
   (add-hook 'web-mode-hook 'eslintd-fix-mode)
   (add-hook 'typescript-mode-hook 'eslintd-fix-mode)
-)
+  )
 
 
 (use-package web-mode
   :ensure t
   :config
+  (setq web-mode-enable-auto-quoting nil)
   (setq web-mode-enable-comment-annotation t)
   (add-to-list 'auto-mode-alist '("\\.jsx$" . web-mode))
   (add-to-list 'auto-mode-alist '("\\.tsx$" . web-mode))
@@ -111,7 +116,7 @@
     (lambda ()
       (when (string-equal "tsx" (file-name-extension buffer-file-name))
         (setup-tide-mode))))
-)
+  )
 
 ;; (use-package lsp-mode
 ;;   :ensure t
@@ -130,4 +135,4 @@
   (add-hook 'js2-mode-hook #'flycheck-mode)
   (add-to-list 'auto-mode-alist '("\\.js$" . js2-mode))
 
-)
+  )

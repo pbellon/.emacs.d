@@ -1,4 +1,10 @@
 ;;; global theme
+(defun set-theme (theme)
+  "Set theme to local buffer"
+  (interactive "sTheme to load:")
+  (color-theme-buffer-local
+    (symbol-value theme)
+    (current-buffer)))
 
 (defcustom use-light-theme nil
   "Check to use the light theme"

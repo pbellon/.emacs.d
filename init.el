@@ -14,7 +14,6 @@
  ;; If there is more than one, they won't work right.
  '(ansi-color-faces-vector
    [default default default italic underline success warning error])
- '(column-number-mode t)
  '(compilation-message-face (quote default))
  '(custom-safe-themes
    (quote
@@ -36,9 +35,7 @@
  '(markdown-command "md2html")
  '(package-selected-packages
    (quote
-    (zenburn-theme elpy dockerfile-mode ag web-mode eslintd-fix prettier-js eldoc-box company-jedi company-elisp jedi-core wttrin treemacs-magit treemacs-icons-dired hydra treemacs-projectile treemacs-evil treemacs lorem-ipsum mermaid-mode imenu-list counsel-projectile counsel go-mode lua-mode moody minions vterm ox-reveal cask-mode ivy-taskrunner emacs-taskrunner bui fish-mode all-the-icons asciidoc buffer-move cheat dashboard editorconfig evil evil-collection evil-numbers fill-column-indicator flycheck-pycheckers fold-dwim format-sql htmlize ivy js2-mode json-mode magit markdown-mode neotree org-babel ox-asciidoc ox-gfm plantuml-mode projectile quelpa quelpa-use-package tide typescript-mode use-package vimrc-mode yaml-mode)))
- '(pos-tip-background-color "#FFFACE")
- '(pos-tip-foreground-color "#272822"))
+    (js-comint company-lsp scss-mode company-scss solarized-theme per-buffer-theme color-theme-buffer-local ob-mermaid eldoc-box eslintd-fix ag lsp-mode prettier-js web-mode company taskrunner evil-multiedit dash wttrin treemacs-magit treemacs-icons-dired hydra treemacs-projectile treemacs-evil treemacs lorem-ipsum mermaid-mode imenu-list counsel-projectile counsel go-mode lua-mode moody minions vterm ox-reveal cask-mode ivy-taskrunner emacs-taskrunner bui fish-mode all-the-icons asciidoc buffer-move cheat dashboard editorconfig evil evil-collection evil-numbers fill-column-indicator flycheck-pycheckers fold-dwim format-sql htmlize ivy js2-mode json-mode magit markdown-mode neotree org-babel ox-asciidoc ox-gfm plantuml-mode projectile quelpa quelpa-use-package tide typescript-mode use-package vimrc-mode yaml-mode))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
