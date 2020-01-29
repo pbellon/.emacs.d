@@ -6,38 +6,8 @@
     (symbol-value theme)
     (current-buffer)))
 
-(defcustom use-light-theme nil
-  "Check to use the light theme"
-  :group 'themes
-  :type 'boolean
-)
-
-(use-package zenburn-theme
-  :ensure t
-  
-)
-
-(setq use-light-theme nil)
-
-(defun reload-theme ()
-  "Forces emacs to reload the configured theme"
-  (interactive)
-  (if 'use-light-theme
-    (load-theme 'one-light t)
-    (load-theme 'one-dark t)
-  ))
-
-;;; mode lines
-;; (use-package smart-mode-line
-;;   :after one-themes
-;;   :ensure t
-;;   :init
-;;   (setq sml/no-confirm-load-theme t)
-;;   (setq sml/theme 'respectful)
-;;   :config
-;;   (sml/setup)
-;; )
-
+(use-package spacemacs-dark-theme
+  :ensure t)
 
 ;;; Fonts
 (setq ia-writer-duospace "iA Writer Duospace")

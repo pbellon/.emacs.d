@@ -65,18 +65,20 @@
   (editorconfig-apply)
   (tide-setup)
   (flycheck-mode +1)
+  (eldoc-mode 1)
+  (setq company-tooltip-align-annotations t)
   (setq flycheck-check-syntax-automatically '(save mode-enabled))
-  (eldoc-mode +1)
   (tide-hl-identifier-mode +1)
   ;; company is an optional dependency.You have to
   ;; install it separately via package-install
   ;; `M-x package-install [ret] company`
   (company-mode +1)
-  )
+  (company-quickhelp-mode +1))
 
 (use-package tide
   :ensure t
   :after (typescript-mode company flycheck)
+  :init
   :config
   ;; (global-set-key (kbd "M->") 'split-and-jump-to-definition)
   (global-set-key (kbd "M->") 'tide-jump-to-definition)

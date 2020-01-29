@@ -12,13 +12,16 @@
        "Ruby"
        "Python"
        "LULZ"
-     )
+       )
     )
-
-    (add-to-list 'cheat/sheets-folders "~/Dev/cheatsheets/")
-    (add-to-list 'cheat/sheets-folders "~/.emacs.d/cheatsheets/")
-    (add-hook 'after-init-hook #'cheat--setup)
+  
+  (add-to-list 'cheat/sheets-folders "~/.emacs.d/cheatsheets/")
+  (cheat--setup)
 )
+
+(quelpa '(cheat :fetcher github :repo "pbellon/cheat")
+  (require 'cheat)
+  (add-hook 'after-init-hook #'trb--setup))
 
 ;; (require 'cheat)
 ;; (trb--setup)

@@ -1,5 +1,9 @@
 (use-package counsel
-  :ensure t)
+  :ensure t
+  :config
+  (setq counsel-find-file-ignore-regexp "\(?:\‘[#.]\)\|\(?:[#~]\’\)")
+)
+
 (use-package swiper
   :ensure t)
 
