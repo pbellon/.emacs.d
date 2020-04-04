@@ -22,7 +22,7 @@
 ;; ALT+F4 binding
 (global-set-key (kbd "M-<f4>") 'kill-emacs)
 
-(global-set-key (kbd "M-<up>") 'move-line-up)
-(global-set-key (kbd "M-<down>") 'move-line-down)
+(global-set-key (kbd "M-<up>") #'move-line-up)
+(global-set-key (kbd "M-<down>") #'move-line-down)
 
 (global-set-key (kbd "C-c C-b") #'switch-to-minibuffer)

@@ -32,6 +32,8 @@
          "dist"
          "coverage"
          "node_modules"
+         "build"
+         "build-static"
          ".cache"
          ) projectile-globally-ignored-directories)
     )

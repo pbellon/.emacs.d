@@ -1,34 +1,49 @@
-(use-package typescript-mode
+(use-package exec-path-from-shell
   :ensure t
-  )
+  :config
+  (when (memq window-system '(mac ns x))
+          (exec-path-from-shell-initialize))
+)
 
-(defun use-eslintd ()
-  (let* ((eslintd "/usr/bin/eslint_d"))
-    (when (and eslintd (file-executable-p eslintd))
-      (setq-local flycheck-javascript-eslint-executable eslintd)
-      (flycheck-select-checker 'javascript-eslint)
-    )))
+(use-package typescript-mode
+  :ensure t)
+
+(defun eslint-fix ()
+  (interactive)
+  (shell-command
+    (concat "yarn eslint --fix "
+      (buffer-file-name (current-buffer)))))
+
+(defun typecheck ()
+  (interactive)
+  (shell-command
+    (concat "yarn typecheck "
+      (buffer-file-name (current-buffer)))))
+
+(defun use-exec-from-node-modules (exec-name)
+  "Returns path to local node_modules executable"
+  (let*
+    ((root (locate-dominating-file
+             (or (buffer-file-name) default-directory)
+             "node_modules"))
+     (executable
+       (and root
+         (expand-file-name
+           (concat "node_modules/.bin/" exec-name)
+           root))))
+    (if (and executable (file-executable-p executable))
+      executable
+      nil)))
 
 (defun use-eslint-from-node-modules ()
-  (let* ((root (locate-dominating-file
-                 (or (buffer-file-name) default-directory)
-                 "node_modules"))
-          (eslint (and root
-                    (expand-file-name "node_modules/.bin/eslint"
-                      root))))
-    (when (and eslint (file-executable-p eslint))
+  (let* ((eslint (use-exec-from-node-modules "eslint")))
+    (when eslint
       (setq-local flycheck-javascript-eslint-executable eslint)
-      (flycheck-select-checker 'javascript-eslint)
-      )))
+      (flycheck-select-checker 'javascript-eslint))))
 
 (defun use-prettier-from-node-modules ()
-  (let* ((root (locate-dominating-file
-                 (or (buffer-file-name) default-directory)
-                 "node_modules"))
-          (prettier (and root
-                      (expand-file-name "node_modules/.bin/prettier"
-                        root))))
-    (when (and prettier (file-executable-p prettier))
+  (let* ((prettier (use-exec-from-node-modules "prettier")))
+    (when prettier
       (setq-local prettier-js-command prettier))))
 
 (use-package flycheck
@@ -41,9 +56,8 @@
   (flycheck-add-mode 'javascript-eslint 'web-mode)
   (flycheck-add-mode 'javascript-eslint 'typescript-mode)
   (setq-default flycheck-temp-prefix ".flycheck")
-  ;; (add-hook 'flycheck-mode-hook #'use-eslintd)
   (add-hook 'flycheck-mode-hook #'use-eslint-from-node-modules)
-  )
+)
 
 
 (defun split-and-jump-to-definition()
@@ -83,10 +97,16 @@
   ;; (global-set-key (kbd "M->") 'split-and-jump-to-definition)
   (global-set-key (kbd "M->") 'tide-jump-to-definition)
   (global-set-key (kbd "M-/") 'tide-jump-to-implementation)
-
+  (local-set-key (kbd "C-c C-f") #'eslint-fix) 
+  (local-set-key (kbd "C-c C-t RET") #'typecheck)
+  
   (add-hook 'typescript-mode-hook #'setup-tide-mode)
   (add-hook 'web-mode-hook #'setup-tide-mode)
+  (setq tide-node-executable (expand-file-name "~/.config/nvm/10.19.0/bin/node"))
   )
+
+(use-package add-node-modules-path
+  :ensure t)
 
 (use-package prettier-js
   :ensure t
@@ -97,15 +117,6 @@
   (add-hook 'prettier-js-mode-hook #'use-prettier-from-node-modules)
   )
 
-(use-package eslintd-fix
-  :ensure t
-  :config
-  (add-hook 'js2-mode-hook 'eslintd-fix-mode)
-  (add-hook 'web-mode-hook 'eslintd-fix-mode)
-  (add-hook 'typescript-mode-hook 'eslintd-fix-mode)
-  )
-
-
 (use-package web-mode
   :ensure t
   :config
@@ -113,6 +124,9 @@
   (setq web-mode-enable-comment-annotation t)
   (add-to-list 'auto-mode-alist '("\\.jsx$" . web-mode))
   (add-to-list 'auto-mode-alist '("\\.tsx$" . web-mode))
+
+  (local-set-key (kbd "C-c C-f") #'eslint-fix)
+  (local-set-key (kbd "C-c C-t RET") #'typecheck)
 
   (add-hook 'web-mode-hook
     (lambda ()
@@ -135,6 +149,4 @@
   :ensure t
   :config
   (add-hook 'js2-mode-hook #'flycheck-mode)
-  (add-to-list 'auto-mode-alist '("\\.js$" . js2-mode))
-
-  )
+  (add-to-list 'auto-mode-alist '("\\.js$" . js2-mode)))

@@ -24,3 +24,6 @@ taskrunner-tasks.eld
 tramp
 .cache
 *.desktop
+elpy/
+games/
+treemacs-workspaces.org
