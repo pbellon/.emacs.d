@@ -1,13 +1,10 @@
 ;;; global theme
 (defun set-theme (theme)
   "Set theme to local buffer"
-  (interactive "sTheme to load:")
+  (interactive "Theme to load:")
   (color-theme-buffer-local
     (symbol-value theme)
     (current-buffer)))
-
-(use-package spacemacs-dark-theme
-  :ensure t)
 
 ;;; Fonts
 (setq ia-writer-duospace "iA Writer Duospace")
@@ -33,3 +30,18 @@
   (with-fixed-width-font ia-writer-mono-s))
   
 (add-hook 'org-mode-hook 'with-ia-writer-duospace)
+
+(use-package monokai-theme
+  :ensure t
+  :config
+  (load-theme #'monokai t)
+  (let ((line (face-attribute 'mode-line :underline)))
+    (set-face-attribute 'mode-line          nil :overline   line)
+    (set-face-attribute 'mode-line-inactive nil :overline   line)
+    (set-face-attribute 'mode-line-inactive nil :underline  line)
+    (set-face-attribute 'mode-line          nil :box        nil)
+    (set-face-attribute 'mode-line          nil :background "#FEB257")
+    (set-face-attribute 'mode-line          nil :foreground "#242728")
+    (set-face-attribute 'mode-line-inactive nil :box        nil)
+    (set-face-attribute 'mode-line-inactive nil :background "#49483E"))
+    (set-face-attribute 'mode-line-inactive nil :foreground "#F8F8F0"))

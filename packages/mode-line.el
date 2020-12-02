@@ -2,6 +2,7 @@
   :ensure t
   :init (minions-mode)
   :config
+  (display-time-mode +1)
   (setq minions-mode-line-lighter "#")
   (setq minions-direct '(flycheck-mode)))
 
@@ -12,3 +13,4 @@
   (setq moody-mode-line-height 22)
   (moody-replace-mode-line-buffer-identification)
   (moody-replace-vc-mode moody-vc-mode))
+

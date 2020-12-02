@@ -1,9 +1,3 @@
-(use-package counsel
-  :ensure t
-  :config
-  (setq counsel-find-file-ignore-regexp "\(?:\‘[#.]\)\|\(?:[#~]\’\)")
-)
-
 (use-package swiper
   :ensure t)
 
@@ -23,13 +17,14 @@
   :ensure t
   :after ivy
   :config
-  
-  (global-set-key "\C-s" 'swiper))
+  (global-set-key "\M-s" 'swiper))
 
 (use-package counsel
   :after (ivy swiper)
   :ensure t
   :config
+  ;; ignore buffer files
+  (setq counsel-find-file-ignore-regexp "\\.elc\\'|*~\\'")
   (global-set-key (kbd "<f6>") 'ivy-resume)
   (global-set-key (kbd "M-x") 'counsel-M-x)
   (global-set-key (kbd "C-x C-f") 'counsel-find-file)
@@ -45,5 +40,6 @@
   (global-set-key (kbd "C-S-o") 'counsel-rhythmbox)
   (global-set-key (kbd "C-x C-b") 'counsel-ibuffer)
   (define-key minibuffer-local-map (kbd "C-r") 'counsel-minibuffer-history)
+
   (add-to-list 'ivy-initial-inputs-alist '(counsel-M-x . "")) ;; for
 )

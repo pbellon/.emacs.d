@@ -23,15 +23,17 @@
   :after org
   :ensure t)
 
+(use-package org-projectile
+  :bind (("C-c n p" . org-projectile-project-todo-completing-read)
+         ("C-c c" . org-capture))
+  :config
+  (progn
+    (org-projectile-per-project)
+    (setq org-agenda-files (append org-agenda-files (org-projectile-todo-files)))
+    (push (org-projectile-project-todo-entry) org-capture-templates))
+  :ensure t)
 
 (setq org-publish-project-alist nil)
-(load-file "~/notes/init.el")
-
-(defun custom-org-keybindings ()
-  "Setup custom keybindings for org-mode"
-  (local-set-key (kbd "C-c L") #'org-toggle-link-display)
-  (local-set-key (kbd "C-c i") (lambda () (org-display-inline-images t t)))
-)
 
 (defun org-refresh ()
   "Refresh parsed tree for current buffer"
@@ -68,28 +70,13 @@
   (unless kwds (setq kwds (get-org-keywords)))
   (cdr (assoc key props)))
 
-;; (use-package flyspell
-;;   :ensure t
-;;   :config
-;;   (setq org-dictionnaries 
-;;     '(
-;;        ("fr" . "francais")
-;;        ("en" . "english")
-;;      )
-;;   )
- 
-;;   (defun configure-flyspell-for-org ()
-;;     (flyspell-mode 1)
-;;     (let* ((props (get-org-keywords)))
-;;       (let* ((lang (get-org-keyword "LANGUAGE" props)))
-;;         (ispell-change-dictionary (cdr (assoc lang org-dictionnaries)))))
-;;   )
-;;   (add-hook 'org-mode-hook #'configure-flyspell-for-org))
-
 ;; customization of org behavior
 (with-eval-after-load 'org
   (setq org-src-fontify-natively t)
   (setq org-html-doctype "html5")
+
+  (customize-set-value 'org-latex-with-hyperref nil)
+  (add-to-list 'org-latex-default-packages-alist "\\PassOptionsToPackage{hyphens}{url}")
   (add-hook 'org-mode-hook #'custom-org-keybindings)
   (add-hook 'org-mode-hook #'visual-line-mode)
   (add-hook 'org-mode-hook #'fixed-font-on-needing-blocks)
@@ -99,9 +86,10 @@
   (setq org-confirm-babel-evaluate nil)
   ;; activate shell language for babel
   (org-babel-do-load-languages 'org-babel-load-languages
-    '((shell t))
-  )
-  (define-key org-mode-map (kbd "C-c <up>") 'org-move-subtree-up)
-  (define-key org-mode-map (kbd "C-c <down>") 'org-move-subtree-down)
+    '((shell t)))
+
+  ;; Keybindings 
+  (define-key org-mode-map (kbd "C-c L") #'org-toggle-link-display)
+  (define-key org-mode-map (kbd "C-c i") (lambda () (org-display-inline-images t t)))
   (define-key org-mode-map (kbd "C-c D") 'org-set-to-done)
 )

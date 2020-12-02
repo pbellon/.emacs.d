@@ -21,7 +21,7 @@
    :test "npm test"
    :run "npm start"
    :test-suffix ".spec")
-
+  (setq projectile-indexing-method 'alien)
   (setq projectile-project-search-path '("~/Dev"))
   (setq projectile-enable-caching t)
   (setq projectile-globally-ignored-directories
@@ -30,6 +30,9 @@
          "vendor"
          "vendor\-libs"
          "dist"
+         "build"
+         "build-prod"
+         "build-static"
          "coverage"
          "node_modules"
          "build"
