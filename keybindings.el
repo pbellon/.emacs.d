@@ -2,9 +2,9 @@
 (global-set-key (kbd "C-c /") #'comment-or-uncomment-region)
 
 ;; execute expression (under pointer)
-(global-set-key (kbd "C-x C-e") #'eval-last-sexp)
+(global-set-key (kbd "C-x C-e") 'eval-last-sexp)
 ;; execute region
-(global-set-key (kbd "C-x C-r") #'eval-region)
+(global-set-key (kbd "C-x C-r") 'eval-region)
 
 (global-set-key (kbd "C-x C-k B") 'bm/kill-this-buffer)
 
@@ -21,6 +21,8 @@
 
 ;; ALT+F4 binding
 (global-set-key (kbd "M-<f4>") 'kill-emacs)
+
+(global-set-key (kbd "<f5>") 'sort-lines)
 
 (global-set-key (kbd "M-<up>") #'move-line-up)
 (global-set-key (kbd "M-<down>") #'move-line-down)

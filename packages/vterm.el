@@ -21,9 +21,5 @@
   (use-package vterm
     :ensure t
     :quelpa (vterm :fetcher file :path "emacs-libvterm/vterm.el")
-    :config
-    (evil-set-initial-state 'vterm-mode 'emacs)
-    ;; (define-key vterm-mode-map (kbd "C-V <down>") 'vterm-send-down)
-    ;; (define-key vterm-mode-map (kbd "C-V <up>") 'vterm-send-up)
   )
 )
