@@ -73,12 +73,17 @@
   :after (add-node-modules-path xref)
   :ensure t
   :config
+  (setq eglot-autoreconnect nil)
+  (setq eglot-autoshutdown t)
   (setq eglot-confirm-server-initiated-edits nil)
+  (setq eglot-events-buffer-size 0)
+
   (add-to-list 'eglot-server-programs '(web-mode . ("typescript-language-server" "--stdio")))
   (add-to-list 'eglot-server-programs '(typescript-mode . ("typescript-language-server" "--stdio")))
 
   (add-hook 'web-mode-hook 'eglot-ensure)
   (add-hook 'typescript-mode-hook 'eglot-ensure)
+
   :bind 
   (
     ("C-x C-r" . eglot-rename)

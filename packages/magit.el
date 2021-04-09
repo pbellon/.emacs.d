@@ -2,4 +2,5 @@
   :ensure t
   :bind (("C-x g" . 'magit-status))
   :config
-  (setq vc-handled-backends (delq 'Git vc-handled-backends)))
+  (setq vc-handled-backends (delq 'Git vc-handled-backends))
+)

@@ -30,3 +30,5 @@
 (global-set-key (kbd "C-c C-b RET") #'switch-to-minibuffer)
 
 (global-set-key (kbd "C-c C-g") #'magit-status)
+
+(define-key ctl-x-4-map "t" 'toggle-window-split)
