@@ -87,6 +87,7 @@
   :bind 
   (
     ("C-x C-r" . eglot-rename)
+    ("C-." . eglot-code-actions)
     ("<f12>" . xref-find-definitions)
   )
 )
@@ -112,3 +113,10 @@
   :ensure t
   :after company
   :hook (company-mode . company-box-mode))
+
+;; Graphviz
+(use-package graphviz-dot-mode
+  :ensure t
+  :config
+  (setq graphviz-dot-indent-width 4))
+
