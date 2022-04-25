@@ -1,5 +1,5 @@
 (use-package htmlize
-  :ensure t
+  :straight t
   :after org
   :config
   ;; (setq org-html-htmlize-output-type 'inline-css) ;; default
@@ -10,23 +10,23 @@
 
 ;; Jira export backend
 (use-package ox-jira
-  :ensure t
+  :straight t
   :after org)
 
 ;; markdown export backend
 (use-package ox-gfm
-  :ensure t
+  :straight t
   :after org)
 
 ;; asciidoc export backend
 (use-package ox-asciidoc
-  :ensure t
+  :straight t
   :after org)
 
 ;; reveal.js export backend to give presentations with org
 (use-package ox-reveal
   :after org
-  :ensure t)
+  :straight t)
 
 (use-package org-projectile
   :bind (("C-c n p" . org-projectile-project-todo-completing-read)
@@ -36,7 +36,7 @@
     (org-projectile-per-project)
     (setq org-agenda-files (append org-agenda-files (org-projectile-todo-files)))
     (push (org-projectile-project-todo-entry) org-capture-templates))
-  :ensure t)
+  :straight t)
 
 (setq org-publish-project-alist nil)
 

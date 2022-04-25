@@ -4,10 +4,11 @@
 #+COMMAND: keybindings
 
 * Elisp evaluation 
-| C-x C-r | =eval-region= | Evaluate the current selected region |
+| C-c C-r | =eval-region=                 | Evaluate the current selected region |
+| C-c C-b | =eval-buffer=                 | Evaluate the current buffer content  |
+
+* Common code edition
+| C-c C-/ | =comment-or-uncomment-region= | Pretty much self explanatory         |
 
 * Buffer management
-
-* Neotree
-| =C-x n f= | =neotree-find=       | Locate the current file in neotree                                    |
-| =C-x n g= | =neotree-go-to-file= | Change the current neotree folder to be the one of the current buffer |
+| C-x C-B | Open all buffer listing |

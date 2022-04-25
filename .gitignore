@@ -27,3 +27,5 @@ tramp
 elpy/
 games/
 treemacs-workspaces.org
+straight/
+.dap-breakpoints

@@ -5,6 +5,7 @@
 (require 'package)
 (require 'subr-x)
 
+(message "trb emacs")
 (load-file "~/.emacs.d/setup.el")
 
 (custom-set-variables
@@ -31,20 +32,14 @@
        ("#F309DF" . 85)
        ("#3C3D37" . 100)))
  '(ivy-mode t)
- '(jdee-db-active-breakpoint-face-colors (cons "#171F24" "#237AD3"))
- '(jdee-db-requested-breakpoint-face-colors (cons "#171F24" "#579C4C"))
- '(jdee-db-spec-breakpoint-face-colors (cons "#171F24" "#777778"))
  '(magit-diff-use-overlays nil)
- '(markdown-command "md2html")
- '(nil nil t)
  '(objed-cursor-color "#D16969")
  '(org-support-shift-select 'always)
  '(package-selected-packages
-    '(ox-jira emojify vscode-dark-plus-theme swiper ace-window company-graphviz-dot graphviz-dot-mode dot-mode treemacs-all-the-icons eglot monokai-theme lsp-java elpy jump company-box adoc-mode lsp-ui org-projectile fic-mode spacemacs-dark-theme origami fireplace exec-path-from-shell add-node-modules-path js-comint company-lsp scss-mode company-scss solarized-theme per-buffer-theme color-theme-buffer-local ob-mermaid eldoc-box eslintd-fix ag lsp-mode prettier-js web-mode taskrunner evil-multiedit dash treemacs-magit treemacs-icons-dired hydra treemacs-projectile treemacs lorem-ipsum mermaid-mode imenu-list counsel-projectile counsel go-mode lua-mode moody minions vterm ox-reveal cask-mode ivy-taskrunner emacs-taskrunner bui fish-mode all-the-icons asciidoc buffer-move cheat dashboard editorconfig evil-collection evil-numbers fill-column-indicator flycheck-pycheckers fold-dwim format-sql htmlize ivy js2-mode json-mode magit markdown-mode neotree org-babel ox-asciidoc ox-gfm plantuml-mode projectile quelpa quelpa-use-package tide typescript-mode use-package vimrc-mode yaml-mode))
+    '(ox-jira emojify swiper ace-window org-projectile origami fireplace exec-path-from-shell add-node-modules-path js-comint company-lsp scss-mode company-scss solarized-theme per-buffer-theme color-theme-buffer-local ob-mermaid eldoc-box eslintd-fix ag lsp-mode prettier-js web-mode taskrunner evil-multiedit dash lorem-ipsum imenu-list counsel-projectile counsel vterm ox-reveal cask-mode bui fish-mode buffer-move cheat dashboard fill-column-indicator htmlize ivy json-mode magit org-babel ox-asciidoc ox-gfm projectile use-package  yaml-mode))
  '(projectile-mode t nil (projectile))
  '(rustic-ansi-faces
-    ["#1e1e1e" "#D16969" "#579C4C" "#D7BA7D" "#339CDB" "#C586C0" "#85DDFF" "#d4d4d4"])
- '(treemacs-follow-mode t))
+    ["#1e1e1e" "#D16969" "#579C4C" "#D7BA7D" "#339CDB" "#C586C0" "#85DDFF" "#d4d4d4"]))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.

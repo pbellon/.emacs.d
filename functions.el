@@ -3,29 +3,17 @@
   "Returns true if running emacs on windows"
   (memq system-type '(windows-nt ms-dos)))
 
-;; buffer management (bm)
-;; load-file the current buffer file
-(defun bm/load-buffer ()
-  "Load the file associated to the current buffer"
-  (interactive)
-  (eval-buffer (current-buffer)))
-(global-set-key (kbd "C-x C-l") 'bm/load-buffer)  
+(defvar user-emacs-config-file "~/.emacs.d/init.el")
 
-;; kill the current buffer and quit its frame (with evil-quit)
-(defun bm/kill-this-buffer ()
-  "Will kill the current buffer then exit the killed buffer window."
-  (interactive)
-  (kill-buffer (current-buffer))
-  (evil-quit))
-
-
-(defvar config-file "~/.emacs.d/init.el")
-
-(defun reload-config ()
+(defun reload-emacs-config ()
   "Reload init.el"
   (interactive)
-  (load-file config-file))
+  (load-file user-emacs-config-file))
 
+(defun open-emacs-config-file ()
+  (interactive)
+  (switch-to-buffer
+   (find-file-noselect user-emacs-config-file)))
 
 ;;; Took from https://www.emacswiki.org/emacs/MoveLine
 (defun move-line (n)
