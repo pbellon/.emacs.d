@@ -1,3 +1,0 @@
-[submodule "emacs-libvterm"]
-	path = emacs-libvterm
-	url = https://github.com/akermu/emacs-libvterm.git

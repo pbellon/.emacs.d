@@ -26,7 +26,8 @@
   ;; (setq search-default-mode #'char-fold-to-regexp)
   (global-set-key (kbd "C-c C-r") 'ivy-resume)
   (global-set-key (kbd "<f6>") 'ivy-resume)
-  (ivy-mode 1))
+  (ivy-mode 1)
+)
 
 (use-package swiper
   :ensure t
@@ -119,11 +120,7 @@
   (setq minions-mode-line-lighter "#")
   (setq minions-direct '(flycheck-mode)))
 
-(use-package moody
-  :ensure t
-  :config
-  (setq x-underline-at-descent-line t)
-  (setq moody-mode-line-height 22)
-  (moody-replace-mode-line-buffer-identification)
-  (moody-replace-vc-mode moody-vc-mode))
 
+(use-package emojify
+  :ensure t
+  :hook (after-init . global-emojify-mode))

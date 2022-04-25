@@ -31,17 +31,8 @@
   
 (add-hook 'org-mode-hook 'with-ia-writer-duospace)
 
-(use-package monokai-theme
-  :load-path "~/.emacs.d/themes"
+(use-package vscode-dark-plus-theme
   :ensure t
-  :config
-  (let ((line (face-attribute 'mode-line :underline)))
-    (set-face-attribute 'mode-line          nil :overline   line)
-    (set-face-attribute 'mode-line-inactive nil :overline   line)
-    (set-face-attribute 'mode-line-inactive nil :underline  line)
-    (set-face-attribute 'mode-line          nil :box        nil)
-    (set-face-attribute 'mode-line          nil :background "#FEB257")
-    (set-face-attribute 'mode-line          nil :foreground "#242728")
-    (set-face-attribute 'mode-line-inactive nil :box        nil)
-    (set-face-attribute 'mode-line-inactive nil :background "#49483E"))
-    (set-face-attribute 'mode-line-inactive nil :foreground "#F8F8F0"))
+  :init
+  ;; (load-theme 'vscode-dark-plus t)
+)

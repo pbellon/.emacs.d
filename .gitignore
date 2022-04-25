@@ -1,6 +1,6 @@
 .cask
 .org-id
-elpa/
+elpa/*
 quelpa/
 auto-save-list/
 url/

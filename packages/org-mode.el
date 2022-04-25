@@ -8,6 +8,11 @@
   (setq org-html-htmlize-font-prefix "org-")
 )
 
+;; Jira export backend
+(use-package ox-jira
+  :ensure t
+  :after org)
+
 ;; markdown export backend
 (use-package ox-gfm
   :ensure t
@@ -74,13 +79,14 @@
 (with-eval-after-load 'org
   (setq org-src-fontify-natively t)
   (setq org-html-doctype "html5")
+  (setq org-image-actual-width 400)
 
   (customize-set-value 'org-latex-with-hyperref nil)
   (add-to-list 'org-latex-default-packages-alist "\\PassOptionsToPackage{hyphens}{url}")
   (add-hook 'org-mode-hook #'visual-line-mode)
   (add-hook 'org-mode-hook #'fixed-font-on-needing-blocks)
   (setq org-todo-keywords
-    '((sequence "TODO(t)" "NOW(n)" "LATER(l)" "REVIEW(r)" "|" "INREVIEW(ir)" "DONE(D)" "CANCELED(c)" "DELEGATED(d)")))
+    '((sequence "TODO(t)" "NOW(n)" "LATER(l)" "REVIEW(r)" "|" "INREVIEW(ir)" "WAITING" "DONE(D)" "CANCELED(c)" "DELEGATED(d)")))
   ;; don't ask to evaluate source code block 
   (setq org-confirm-babel-evaluate nil)
   ;; activate shell language for babel

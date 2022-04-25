@@ -95,21 +95,12 @@
   (org-babel-do-load-languages 'org-babel-load-languages
 			       '((plantuml . t))))
 
-(use-package elpy
-  :after company
-  :ensure t
-  :defer t
-  :init
-  (advice-add 'python-mode :before 'elpy-enable))
-
-
 ;; FIXME mode
 (use-package fic-mode
   :ensure t
   :hook ((prog-mode . fic-mode)
          (web-mode . fic-mode))
 )
-
 
 (use-package fish-mode
   :ensure t)
