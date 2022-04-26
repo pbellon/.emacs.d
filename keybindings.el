@@ -1,14 +1,16 @@
 ;; KEY BINDINGS
+
 ;;;; Buffers / Frames
+
 ;; window size management
 (global-set-key (kbd "C-c C-w C-p") 'shrink-window-horizontally)
-(global-set-key (kbd "C-<kp-multiply>") 'enlarge-window-horizontally)
-(global-set-key (kbd "C-<kp-subtract>") 'shrink-window)
-(global-set-key (kbd "C-<kp-add>") 'enlarge-window)
+(global-set-key (kbd "C-*") 'enlarge-window-horizontally)
+(global-set-key (kbd "C--") 'shrink-window)
+(global-set-key (kbd "C-+") 'enlarge-window)
 
 ;; maximize current window
-(global-set-key (kbd "C-<kp-enter>") 'maximize-window)
-(global-set-key (kbd "C-<kp-decimal>") 'minimize-window)
+(global-set-key (kbd "C-=") 'maximize-window)
+(global-set-key (kbd "C-\\") 'minimize-window)
 (define-key ctl-x-4-map "t" 'toggle-window-split)
 
 
@@ -19,9 +21,9 @@
 
 ;; ALT+F4 binding, also bound to C-x C-c
 (global-set-key (kbd "M-<f4>") 'save-buffers-kill-terminal) 
-(global-set-key (kbd "<f5>") 'sort-lines)
 
 ;; general edition keybindings
+(global-set-key (kbd "<f5>") 'sort-lines)
 (global-set-key (kbd "C-c C-/") #'comment-or-uncomment-region)
 (global-set-key (kbd "M-<up>") #'move-line-up)
 (global-set-key (kbd "M-<down>") #'move-line-down)

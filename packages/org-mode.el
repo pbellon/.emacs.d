@@ -83,6 +83,7 @@
 
   (customize-set-value 'org-latex-with-hyperref nil)
   (add-to-list 'org-latex-default-packages-alist "\\PassOptionsToPackage{hyphens}{url}")
+  (add-to-list 'org-agenda-files "~/notes")
   (add-hook 'org-mode-hook #'visual-line-mode)
   (add-hook 'org-mode-hook #'fixed-font-on-needing-blocks)
   (setq org-todo-keywords
@@ -97,4 +98,9 @@
   (define-key org-mode-map (kbd "C-c L") #'org-toggle-link-display)
   (define-key org-mode-map (kbd "C-c i") (lambda () (org-display-inline-images t t)))
   (define-key org-mode-map (kbd "C-c D") 'org-set-to-done)
+
+  ;; global keybindings
+  (global-set-key (kbd "C-c l") #'org-store-link)
+  (global-set-key (kbd "C-c a") #'org-agenda)
+  (global-set-key (kbd "C-c c") #'org-capture)
 )

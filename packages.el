@@ -59,5 +59,4 @@ There are two things you can do about this warning:
 (straight-use-package 'use-package)
 (load-pkgs)
 
-(add-to-list 'load-path "~/.emacs.d/deps")
 (package-refresh-contents "U")

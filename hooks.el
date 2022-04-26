@@ -1,2 +1,0 @@
-;; Major modes config
-

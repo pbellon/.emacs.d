@@ -11,6 +11,7 @@
 | nano-emacs                | minimalist theme by nrougier for emacs |
 | dashboard                 | minimalist splash screen for emacs     |
 | magit                     | Git integration in emacs               |
+| ace-window                | Navigation between frames              |
 | straight.el + use-package | Dependency management                  |
 
 
@@ -23,8 +24,20 @@
 ** emacs-lisp evaluation
 | Keybinding | Function    |
 |------------+-------------|
-| ~C-c C-r~    | ~eval-region~ |
-| ~C-c C-b~    | ~eval-buffer~ |
+| ~C-c C-r~    | =eval-region= |
+| ~C-c C-b~    | =eval-buffer= |
+
+
+* Common code edition
+| ~C-c C-/~ | =comment-or-uncomment-region= |
+
+* Buffer / Frame / Window management
+| ~C-x B~   | Open all buffer listing                                      |
+| ~C-x C-b~ | Swipe between buffers                                        |
+| ~C-x o~   | Triggers ~ace-window~, replace default binding of ~other-window~ |
+|         |                                                              |
+
+
 
 
 
