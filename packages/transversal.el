@@ -1,6 +1,5 @@
 (use-package dashboard
-  :after (evil)
-  :ensure t
+  :straight t
   :config
   (setq initial-buffer-choice #'(lambda () (get-buffer "*dashboard*")))
   (setq dashboard-startup-banner 'logo)
@@ -9,15 +8,13 @@
                           (bookmarks . 4)))
   (dashboard-setup-startup-hook))
 
-
 (use-package ace-window
-  :ensure t
+  :straight t
   :config
-  (global-set-key (kbd "C-x C-w") 'ace-window))
-
+  (global-set-key (kbd "C-x o") 'ace-window))
 
 (use-package ivy
-  :ensure t
+  :straight t
   :after (swiper counsel)
   :config
   (setq ivy-use-virtual-buffers t)
@@ -30,14 +27,14 @@
 )
 
 (use-package swiper
-  :ensure t
+  :straight t
   :after ivy
   :config
-  (global-set-key "\M-s" 'swiper))
+  (global-set-key "\C-s" 'swiper))
 
 (use-package counsel
   :after (ivy swiper)
-  :ensure t
+  :straight t
   :config
   ;; ignore buffer files
   (setq counsel-find-file-ignore-regexp "\\.elc\\'|*~\\'")
@@ -53,20 +50,17 @@
   (global-set-key (kbd "C-c j") 'counsel-git-grep)
   (global-set-key (kbd "C-c k") 'counsel-ag)
   (global-set-key (kbd "C-x l") 'counsel-locate)
-  (global-set-key (kbd "C-S-o") 'counsel-rhythmbox)
+  (global-set-key (kbd "C-x B") 'ibuffer)
   (global-set-key (kbd "C-x C-b") 'counsel-ibuffer)
   (define-key minibuffer-local-map (kbd "C-r") 'counsel-minibuffer-history)
-
   (add-to-list 'ivy-initial-inputs-alist '(counsel-M-x . "")) ;; for
 )
 
-(global-set-key (kbd "C-x B") 'ibuffer)
-
 
 (use-package imenu-list
-  :ensure t
+  :straight t
   :config
-  (global-set-key (kbd "C-{") #'imenu-list-smart-toggle)
+  (global-set-key (kbd "C-c C-m") #'imenu-list-smart-toggle)
   (setq imenu-list-auto-resize t)
   (setq imenu-list-position 'right))
 
@@ -111,16 +105,11 @@
 ;; file (C-c- C-e h o)
 (setq process-connection-type nil)
 
-
-(use-package minions
-  :ensure t
-  :init (minions-mode)
+(use-package magit
+  :straight t
+  :bind (("C-x g" . 'magit-status))
   :config
-  (display-time-mode +1)
-  (setq minions-mode-line-lighter "#")
-  (setq minions-direct '(flycheck-mode)))
+  (setq vc-handled-backends (delq 'Git vc-handled-backends))
+)
 
 
-(use-package emojify
-  :ensure t
-  :hook (after-init . global-emojify-mode))

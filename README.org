@@ -5,40 +5,26 @@
 - ~hooks.el~ global mode & hooks settings --> should be deleted.
 - ~keybindings.el~ basic keybindings for "native" functions of emacs
 - ~packages.el~ dependencies setup & loading of all elisp files under ~packages/~
-~ ~packages/*.el~ per mode / dependency configuration
+- ~packages/*.el~ mode specific configurations by functionnality
+
+* Used package
+| nano-emacs                | minimalist theme by nrougier for emacs |
+| dashboard                 | minimalist splash screen for emacs     |
+| magit                     | Git integration in emacs               |
+| straight.el + use-package | Dependency management                  |
+
 
 * Custom functions
-- ~bm/kill-this-buffer~ kill the active buffer & close its frame
-- ~bm/load-buffer~ evaluate the content of the current buffer, useful when customizing emacs
+- ~open-emacs-config-file~ opens ~~/.emacs.d/init.el~
+- ~reload-config~ force reload of ~~/.emacs.d/init.el~
 
 * Main keybindings
-- ~C-x C-r~ calls ~eval-region~
-** Buffer management
-| Keybinding  | Function              | Description                           |
-|-------------+-----------------------+---------------------------------------|
-| ~C-x C-k b~ | ~bm/kill-this-buffer~ | Will kill current buffer & exit frame |
-| ~C-x C-l~   | ~bm/load-buffer~      | Evaluate current buffer's content     |
 
-* Used packages
-| all-the-icons      | Better icons for emacs modes & packages                                                |
-| cheat              | Cheatsheets for emacs (based on org-mode)                                              |
-| dashboard          | nice minimalist splash screen for emacs showing recent files, projects & bookmarks     |
-| evil               | Vim layer for emacs                                                                    |
-| evil-collection    | Additional keybindings for evil                                                        |
-| ivy-taskrunner     | Runs scripts from emacs such as npm, make etc...                                       |
-| magit              | Git integration in emacs                                                               |
-| neotree            | folder tree buffer similar to vim's nerdtree                                           |
-| quelpa             | Git based dependencies for emacs                                                       |
-| quelpa-use-package | Adds ~:quelpa~ argument to use-package function                                        |
-| use-package        | All dependencies are configured with use-package                                       |
-| vterm              | Better shell integration with libvterm, needs manual installation, (see install vterm) |
+** emacs-lisp evaluation
+| Keybinding | Function    |
+|------------+-------------|
+| ~C-c C-r~    | ~eval-region~ |
+| ~C-c C-b~    | ~eval-buffer~ |
 
-* Install vterm
-To be use you'll need to manually build emacs-libvterm which is included in this repository as a git submodule.
 
-#+BEGIN_SRC shell
-git submodule update --init
-#+END_SRC
-
-Then refers to ~emacs-libvterm/README.md~ to build it. Then you should be able to use vterm inside emacs in the next configuration loading (or if you call ~reload-config~ function).
 

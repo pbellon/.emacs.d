@@ -10,9 +10,6 @@
 (if (not (boundp 'server-process))
   (server-start))
 
-;; (add-hook 'text-mode-hook 'remove-dos-eol)
-
 (load "~/.emacs.d/functions.el")
 (load "~/.emacs.d/keybindings.el")
 (load "~/.emacs.d/packages.el")
-(load "~/.emacs.d/hooks.el")

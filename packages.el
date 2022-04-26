@@ -41,22 +41,23 @@ There are two things you can do about this warning:
 (package-initialize)
 (setq gnutls-algorithm-priority "NORMAL:-VERS-TLS1.3")
 (setq package-check-signature nil)
-(add-to-list 'package-unsigned-archives "undo-tree")
+
+;; Straight.el bootstrap
+(defvar bootstrap-version)
+(let ((bootstrap-file
+       (expand-file-name "straight/repos/straight.el/bootstrap.el" user-emacs-directory))
+      (bootstrap-version 5))
+  (unless (file-exists-p bootstrap-file)
+    (with-current-buffer
+        (url-retrieve-synchronously
+         "https://raw.githubusercontent.com/raxod502/straight.el/develop/install.el"
+         'silent 'inhibit-cookies)
+      (goto-char (point-max))
+      (eval-print-last-sexp)))
+  (load bootstrap-file nil 'nomessage))
+
+(straight-use-package 'use-package)
+(load-pkgs)
+
 (add-to-list 'load-path "~/.emacs.d/deps")
 (package-refresh-contents "U")
-
-(unless (package-installed-p 'use-package)
-  (package-refresh-contents)
-  (package-install 'use-package))
-
-(require 'use-package)
-
-(use-package quelpa :ensure t)
-
-(use-package quelpa-use-package
-  :ensure t
-  :after (quelpa)
-  :config
-  ;; this allows us to automatically load all elisp files under <emacs dir>/packages/
-  (load-pkgs)
-)

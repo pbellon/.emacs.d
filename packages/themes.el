@@ -1,38 +1,22 @@
-;;; global theme
-(defun set-theme (theme)
-  "Set theme to local buffer"
-  (interactive "Theme to load:")
-  (color-theme-buffer-local
-    (symbol-value theme)
-    (current-buffer)))
-
 ;;; Fonts
-(setq ia-writer-duospace "iA Writer Duospace")
-(setq ia-writer-duo-v "iA Writer Duo V")
-(setq ia-writer-mono-s "iA Writer Mono S")
+(straight-use-package '(nano-emacs :type git :host github :repo "rougier/nano-emacs"))
 
-(defun with-fixed-width-font (font-family-name)
-  (face-remap-add-relative 'default :family font-family-name :height 100 :width 50))
+(require 'nano-layout)
+(require 'nano-theme-dark)
+(require 'nano-faces)
+(nano-faces)
 
-(defun with-variable-width-font (font-family-name)
-  (face-remap-add-relative 'default :family font-family-name :height 100 :width 'semi-condensed))
+(require 'nano-theme)
+(nano-theme)
 
-(defun with-ia-writer-duospace ()
-  (interactive)
-  (with-variable-width-font ia-writer-duospace))
+(require 'nano-modeline)
+(require 'nano-splash)
 
-(defun with-ia-writer-duo-variable ()
-  (interactive)
-  (with-variable-width-font ia-writer-duo-v))
+(when tool-bar-mode
+  (tool-bar-mode -1))
 
-(defun with-ia-writer-mono ()
-  (interactive)
-  (with-fixed-width-font ia-writer-mono-s))
-  
-(add-hook 'org-mode-hook 'with-ia-writer-duospace)
+(when scroll-bar-mode
+  (scroll-bar-mode -1))
 
-(use-package vscode-dark-plus-theme
-  :ensure t
-  :init
-  ;; (load-theme 'vscode-dark-plus t)
-)
+(setq frame-title-format
+      '(buffer-file-name "%f" (dired-directory direct-directy "%b")))
