@@ -5,6 +5,9 @@
 (setq-default indent-tabs-mode nil)
 (setq indent-tabs-mode nil)
 
+;; syntax color
+(use-package typescript-mode :straight t)
+
 (eval-after-load 'hideshow
   '(progn
      (global-set-key (kbd "C-c C-f") 'hs-toggle-hiding)))

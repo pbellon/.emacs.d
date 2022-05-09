@@ -18,16 +18,6 @@
   :straight t
   :after org)
 
-;; asciidoc export backend
-(use-package ox-asciidoc
-  :straight t
-  :after org)
-
-;; reveal.js export backend to give presentations with org
-(use-package ox-reveal
-  :after org
-  :straight t)
-
 (use-package org-projectile
   :bind (("C-c n p" . org-projectile-project-todo-completing-read)
          ("C-c c" . org-capture))
@@ -47,7 +37,6 @@
 
 (defun fixed-font-on-needing-blocks ()
   (set-face-attribute 'org-table nil :inherit 'fixed-pitch))
-
 
 ;;; took from https://stackoverflow.com/questions/25930097/emacs-org-mode-quickly-mark-todo-as-done/25942392#25942392
 (defun org-set-to-done ()
@@ -82,13 +71,17 @@
   (setq org-image-actual-width 400)
 
   (customize-set-value 'org-latex-with-hyperref nil)
+
   (add-to-list 'org-latex-default-packages-alist "\\PassOptionsToPackage{hyphens}{url}")
   (add-to-list 'org-agenda-files "~/notes")
+
   (add-hook 'org-mode-hook #'visual-line-mode)
   (add-hook 'org-mode-hook #'fixed-font-on-needing-blocks)
+
   (setq org-todo-keywords
     '((sequence "TODO(t)" "NOW(n)" "LATER(l)" "REVIEW(r)" "|" "INREVIEW(ir)" "WAITING" "DONE(D)" "CANCELED(c)" "DELEGATED(d)")))
-  ;; don't ask to evaluate source code block 
+ 
+ ;; don't ask to evaluate source code block 
   (setq org-confirm-babel-evaluate nil)
   ;; activate shell language for babel
   (org-babel-do-load-languages 'org-babel-load-languages

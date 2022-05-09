@@ -10,7 +10,6 @@
 (nano-theme)
 
 (require 'nano-modeline)
-(require 'nano-splash)
 
 (when tool-bar-mode
   (tool-bar-mode -1))

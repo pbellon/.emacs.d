@@ -36,7 +36,7 @@
  '(objed-cursor-color "#D16969")
  '(org-support-shift-select 'always)
  '(package-selected-packages
-    '(ox-jira emojify swiper ace-window org-projectile origami fireplace exec-path-from-shell add-node-modules-path js-comint company-lsp scss-mode company-scss solarized-theme per-buffer-theme color-theme-buffer-local ob-mermaid eldoc-box eslintd-fix ag lsp-mode prettier-js web-mode taskrunner evil-multiedit dash lorem-ipsum imenu-list counsel-projectile counsel vterm ox-reveal cask-mode bui fish-mode buffer-move cheat dashboard fill-column-indicator htmlize ivy json-mode magit org-babel ox-asciidoc ox-gfm projectile use-package  yaml-mode))
+    '(ox-jira swiper ace-window org-projectile origami exec-path-from-shell ob-mermaid eldoc-box ag web-modedash lorem-ipsum imenu-list counsel-projectile counsel ox-reveal cask-mode bui fish-mode buffer-move cheat dashboard fill-column-indicator htmlize ivy json-mode magit org-babel ox-asciidoc ox-gfm projectile use-package  yaml-mode))
  '(projectile-mode t nil (projectile))
  '(rustic-ansi-faces
     ["#1e1e1e" "#D16969" "#579C4C" "#D7BA7D" "#339CDB" "#C586C0" "#85DDFF" "#d4d4d4"]))

@@ -19,6 +19,7 @@
       '(
          "elpa"
          "quelpa"
+         "straight"
          "vendor"
          "vendor\-libs"
          "dist"
