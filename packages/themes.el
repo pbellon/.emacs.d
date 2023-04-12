@@ -1,15 +1,19 @@
-;;; Fonts
-(straight-use-package '(nano-emacs :type git :host github :repo "rougier/nano-emacs"))
+(use-package doom-themes
+  :straight t
+  :ensure t
+  ;; Global settings (defaults)
+  :config
+  (setq doom-themes-enable-bold t)    ; if nil, bold is universally disabled
+  (setq doom-themes-enable-italic t) ; if nil, italics is universally disabled
 
-(require 'nano-layout)
-(require 'nano-theme-dark)
-(require 'nano-faces)
-(nano-faces)
+  (load-theme 'doom-nord t)
 
-(require 'nano-theme)
-(nano-theme)
+  ;; Corrects (and improves) org-mode's native fontification.
+  (doom-themes-org-config)
+)
 
-(require 'nano-modeline)
+(when menu-bar-mode
+  (menu-bar-mode -1))
 
 (when tool-bar-mode
   (tool-bar-mode -1))

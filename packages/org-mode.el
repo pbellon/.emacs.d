@@ -5,8 +5,7 @@
   ;; (setq org-html-htmlize-output-type 'inline-css) ;; default
   (setq org-html-htmlize-output-type 'css)
   ;; (setq org-html-htmlize-font-prefix "") ;; default
-  (setq org-html-htmlize-font-prefix "org-")
-)
+  (setq org-html-htmlize-font-prefix "org-"))
 
 ;; Jira export backend
 (use-package ox-jira
@@ -17,6 +16,16 @@
 (use-package ox-gfm
   :straight t
   :after org)
+
+
+;; run this function when reading a markdown file exported from org
+(defun open-current-file-in-vscode ()
+  (interactive)
+  (save-window-excursion
+    (async-shell-command (format "code %S" (shell-quote-argument buffer-file-name)))))
+
+;; (global-set-key (kbd "C-c v") 'my-open-current-file-in-vscode)
+
 
 (use-package org-projectile
   :bind (("C-c n p" . org-projectile-project-todo-completing-read)
@@ -58,7 +67,7 @@
     (lambda (keyword) (cons
                         (org-element-property :key keyword)
                         (org-element-property :value keyword)))))
-  
+
 (defun get-org-keyword (key &optional kwds)
   "return the value associated to key"
   (unless kwds (setq kwds (get-org-keywords)))
@@ -73,21 +82,24 @@
   (customize-set-value 'org-latex-with-hyperref nil)
 
   (add-to-list 'org-latex-default-packages-alist "\\PassOptionsToPackage{hyphens}{url}")
-  (add-to-list 'org-agenda-files "~/notes")
+
+  (custom-set-variables
+   '(org-directory "~/notes")
+   '(org-agenda-files (directory-files-recursively org-directory)))
 
   (add-hook 'org-mode-hook #'visual-line-mode)
   (add-hook 'org-mode-hook #'fixed-font-on-needing-blocks)
 
   (setq org-todo-keywords
     '((sequence "TODO(t)" "NOW(n)" "LATER(l)" "REVIEW(r)" "|" "INREVIEW(ir)" "WAITING" "DONE(D)" "CANCELED(c)" "DELEGATED(d)")))
- 
- ;; don't ask to evaluate source code block 
+
+ ;; don't ask to evaluate source code block
   (setq org-confirm-babel-evaluate nil)
   ;; activate shell language for babel
   (org-babel-do-load-languages 'org-babel-load-languages
     '((shell t)))
 
-  ;; Keybindings 
+  ;; Keybindings
   (define-key org-mode-map (kbd "C-c L") #'org-toggle-link-display)
   (define-key org-mode-map (kbd "C-c i") (lambda () (org-display-inline-images t t)))
   (define-key org-mode-map (kbd "C-c D") 'org-set-to-done)
@@ -95,5 +107,4 @@
   ;; global keybindings
   (global-set-key (kbd "C-c l") #'org-store-link)
   (global-set-key (kbd "C-c a") #'org-agenda)
-  (global-set-key (kbd "C-c c") #'org-capture)
-)
+  (global-set-key (kbd "C-c c") #'org-capture))

@@ -1,3 +1,9 @@
+;; ssh env etc.
+(use-package keychain-environment
+  :straight t
+  :config
+  (keychain-refresh-environment))
+
 (use-package dashboard
   :straight t
   :config
@@ -111,3 +117,12 @@
   :config
   (setq vc-handled-backends (delq 'Git vc-handled-backends))
 )
+
+(use-package ssh-agency
+  :straight t
+)
+
+;; change split orientation
+(use-package transpose-frame :straight t
+  :bind (("C-x t w" . 'transpose-frame)))
+
