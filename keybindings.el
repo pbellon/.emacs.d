@@ -30,6 +30,7 @@
 
 (global-set-key (kbd "C-c C-c b") #'switch-to-minibuffer)
 (global-set-key (kbd "C-c C-g") #'magit-status)
+(global-set-key (kbd "C-x C-/") #'revert-buffer)
 
 
 ;;; Defines list of kbd translations for special unicode chars.

@@ -1,3 +1,10 @@
+(defun my/projectile-switch-project-action ()
+  "Custom action for switching projects with Projectile."
+  (interactive)
+  (let ((action (completing-read "Select action: " '("Find file" "Magit status"))))
+    (cond ((equal action "Find file") (projectile-find-file))
+          ((equal action "Magit status") (magit-status)))))
+
 (use-package ag :straight t)
 
 (use-package projectile
@@ -31,6 +38,7 @@
          "build"
          "build-static"
          ".cache"
+         ".git"
          )
       projectile-globally-ignored-directories)
     )
@@ -50,6 +58,7 @@
           projectile-globally-ignored-file-suffixes))
 
   (define-key projectile-mode-map (kbd "M-p") 'projectile-command-map)
+  (setq projectile-switch-project-action 'my/projectile-switch-project-action)
 )
 
 
@@ -59,4 +68,6 @@
   :config
   (counsel-projectile-mode 1)
 )
+
+
 

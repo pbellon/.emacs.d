@@ -33,7 +33,6 @@
   :config
   (progn
     (org-projectile-per-project)
-    (setq org-agenda-files (append org-agenda-files (org-projectile-todo-files)))
     (push (org-projectile-project-todo-entry) org-capture-templates))
   :straight t)
 
@@ -82,10 +81,6 @@
   (customize-set-value 'org-latex-with-hyperref nil)
 
   (add-to-list 'org-latex-default-packages-alist "\\PassOptionsToPackage{hyphens}{url}")
-
-  (custom-set-variables
-   '(org-directory "~/notes")
-   '(org-agenda-files (directory-files-recursively org-directory)))
 
   (add-hook 'org-mode-hook #'visual-line-mode)
   (add-hook 'org-mode-hook #'fixed-font-on-needing-blocks)
