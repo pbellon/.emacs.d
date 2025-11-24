@@ -1,40 +1,16 @@
 (use-package htmlize
-  :straight t
   :after org
+  :ensure t
   :config
   ;; (setq org-html-htmlize-output-type 'inline-css) ;; default
   (setq org-html-htmlize-output-type 'css)
   ;; (setq org-html-htmlize-font-prefix "") ;; default
   (setq org-html-htmlize-font-prefix "org-"))
 
-;; Jira export backend
-(use-package ox-jira
-  :straight t
-  :after org)
-
 ;; markdown export backend
 (use-package ox-gfm
-  :straight t
+  :ensure t
   :after org)
-
-
-;; run this function when reading a markdown file exported from org
-(defun open-current-file-in-vscode ()
-  (interactive)
-  (save-window-excursion
-    (async-shell-command (format "code %S" (shell-quote-argument buffer-file-name)))))
-
-;; (global-set-key (kbd "C-c v") 'my-open-current-file-in-vscode)
-
-
-(use-package org-projectile
-  :bind (("C-c n p" . org-projectile-project-todo-completing-read)
-         ("C-c c" . org-capture))
-  :config
-  (progn
-    (org-projectile-per-project)
-    (push (org-projectile-project-todo-entry) org-capture-templates))
-  :straight t)
 
 (setq org-publish-project-alist nil)
 

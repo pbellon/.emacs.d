@@ -5,20 +5,10 @@
 (setq-default indent-tabs-mode nil)
 (setq indent-tabs-mode nil)
 
-;; syntax color
-(use-package typescript-mode :straight t)
-
 (use-package markdown-mode
-  :straight t
+  :ensure t
   :mode (".md" . gfm-mode)
 )
-
-(use-package fish-mode
-  :straight t
-  :mode (".fish" . fish-mode)
-)
-
-(use-package vue-mode :straight t)
 
 (eval-after-load 'hideshow
   '(progn
@@ -36,7 +26,3 @@ If point was already at that position, move point to beginning of line."
          (beginning-of-line))))
 
 (global-set-key [home] 'smart-beginning-of-line)
-
-
-;; elisp edition
-(use-package elisp-format :straight t)

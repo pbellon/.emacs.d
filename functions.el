@@ -132,3 +132,10 @@ shell exits, the buffer is killed."
 	  (select-window first-win)
 	  (if this-win-2nd (other-window 1))))))
 
+;; open file in VSCode
+(defun open-current-file-in-vscode ()
+  (interactive)
+  (save-window-excursion
+    (async-shell-command (format "code %S" (shell-quote-argument buffer-file-name)))))
+
+;; (global-set-key (kbd "C-c v") 'my-open-current-file-in-vscode)

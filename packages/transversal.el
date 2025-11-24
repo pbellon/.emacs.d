@@ -1,26 +1,16 @@
 ;; ssh env etc.
 (use-package keychain-environment
-  :straight t
+  :ensure t
   :config
   (keychain-refresh-environment))
 
-(use-package dashboard
-  :straight t
-  :config
-  (setq initial-buffer-choice #'(lambda () (get-buffer "*dashboard*")))
-  (setq dashboard-startup-banner 'logo)
-  (setq dashboard-items '((recents . 10)
-                          (projects . 10)
-                          (bookmarks . 4)))
-  (dashboard-setup-startup-hook))
-
 (use-package ace-window
-  :straight t
+  :ensure t
   :config
   (global-set-key (kbd "C-x o") 'ace-window))
 
 (use-package ivy
-  :straight t
+  :ensure t
   :after (swiper counsel)
   :config
   (setq ivy-use-virtual-buffers t)
@@ -33,14 +23,14 @@
 )
 
 (use-package swiper
-  :straight t
+  :ensure t
   :after ivy
   :config
   (global-set-key "\C-s" 'swiper))
 
 (use-package counsel
+  :ensure t
   :after (ivy swiper)
-  :straight t
   :config
   ;; ignore buffer files
   (setq counsel-find-file-ignore-regexp "\\.elc\\'|*~\\'")
@@ -64,7 +54,7 @@
 
 
 (use-package imenu-list
-  :straight t
+  :ensure t
   :config
   (global-set-key (kbd "C-c C-m") #'imenu-list-smart-toggle)
   (setq imenu-list-auto-resize t)
@@ -112,17 +102,16 @@
 (setq process-connection-type nil)
 
 (use-package magit
-  :straight t
+  :ensure t
   :bind (("C-x g" . 'magit-status))
   :config
   (setq vc-handled-backends (delq 'Git vc-handled-backends))
 )
 
-(use-package ssh-agency
-  :straight t
-)
+(use-package ssh-agency :ensure t)
 
 ;; change split orientation
-(use-package transpose-frame :straight t
+(use-package transpose-frame
+  :ensure t
   :bind (("C-x t w" . 'transpose-frame)))
 
