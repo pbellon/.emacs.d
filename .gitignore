@@ -9,6 +9,8 @@ url/
 \#*
 .\#*
 *~
+package-quickstart.el
+package-quickstart.elc
 # vim files
 *.swp
 *.swo
@@ -28,5 +30,5 @@ tramp
 elpy/
 games/
 treemacs-workspaces.org
-straight/
 .dap-breakpoints
+server/
