@@ -18,6 +18,26 @@
 (tool-bar-mode -1)
 (scroll-bar-mode -1)
 (setq inhibit-startup-screen t)
+;; disable the beep on error & use visual feedback instead
+(setq visible-bell t)
+
+;; Disable built-in VC git backend — magit handles git entirely.
+;; Done here so it never activates, even before magit loads.
+(setq vc-handled-backends (delq 'Git vc-handled-backends))
+
+;; Set font on the default frame before any frame is created to avoid
+;; a resize/redraw when setup.el runs set-frame-font later.
+(defun trb/first-available-font (candidates)
+  "Return the first font family from CANDIDATES that is installed."
+  (catch 'found
+    (dolist (f candidates)
+      (when (member f (font-family-list))
+        (throw 'found f)))))
+
+(when-let ((font (trb/first-available-font
+                  '("Fira Code" "Cascadia Mono" "Consolas"
+                    "Menlo" "DejaVu Sans Mono"))))
+  (add-to-list 'default-frame-alist (cons 'font (concat font "-12"))))
 
 (provide 'early-init)
 ;;; early-init.el ends here

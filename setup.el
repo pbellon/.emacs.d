@@ -1,5 +1,7 @@
+;;; setup.el --- Main configuration file -*- lexical-binding: t; -*-
 
-;;;; Step 0) init --------------------------------------------------------------
+;;;; --- Init ------------------------------------------------------------------
+(defconst trb/setup-start-time (current-time))
 
 ;; setting coding-system
 (prefer-coding-system 'utf-8)
@@ -9,28 +11,48 @@
 ;; set to nil to convert DOS EOL to UNIX on save
 (setq inhibit-eol-conversion 1)
 
-(if (not (boundp 'server-process))
-  (server-start))
+;; Start server after startup to avoid delaying init
+(add-hook 'emacs-startup-hook
+          (lambda ()
+            (unless (and (boundp 'server-process) server-process)
+              (server-start))))
 
 
-;;;; Step 1) custom variables --------------------------------------------------
+;;;; --- Custom variables ------------------------------------------------------
 
 (defvar user-emacs-config-file "~/.emacs.d/init.el")
-(defvar user-emacs-config-dir "~/.emacs.d/"),
+(defvar user-emacs-config-dir "~/.emacs.d/")
 
-;;;; Step 2) custom functions ----------------------------------------------------
+;;;; --- Custom functions ------------------------------------------------------
 
-;; Check if running emacs on windows
-(defun on-windows ()
-  "Returns true if running emacs on windows"
-  (memq system-type '(windows-nt ms-dos)))
-
-(defun reload-emacs-config ()
+(defun trb/reload-emacs-config ()
   "Reload init.el"
   (interactive)
   (load-file user-emacs-config-file))
 
-(defun open-emacs-config ()
+(defun trb/sync-selected-packages ()
+  "Derive package-selected-packages from use-package declarations in setup.el.
+Writes the result back to custom-file (init.el) via `customize-save-variable'."
+  (interactive)
+  (let (pkgs)
+    (with-temp-buffer
+      (insert-file-contents (expand-file-name "setup.el" user-emacs-directory))
+      (goto-char (point-min))
+      (while (re-search-forward "^(use-package \\([^ \n]+\\)" nil t)
+        (push (intern (match-string 1)) pkgs)))
+    (setq pkgs (delete-dups (nreverse pkgs)))
+    (customize-save-variable 'package-selected-packages pkgs)
+    (message "[trb] package-selected-packages updated: %s"
+             (mapconcat #'symbol-name pkgs " "))))
+
+(defun trb/clean-packages ()
+  "Sync package-selected-packages from setup.el, then remove orphan packages."
+  (interactive)
+  (trb/sync-selected-packages)
+  (package-autoremove))
+
+
+(defun trb/open-emacs-config ()
   (interactive)
   (switch-to-buffer
    (find-file-noselect user-emacs-config-dir)))
@@ -59,20 +81,33 @@
   (interactive "p")
   (move-line (if (null n) 1 n)))
 
-(defun remove-dos-eol ()
+(defun trb/remove-dos-eol ()
   "Do not show ^M in files containing mixed UNIX and DOS line endings."
   (interactive)
   (setq buffer-display-table (make-display-table))
   (aset buffer-display-table ?\^M []))
 
-(defun switch-to-minibuffer ()
+(defun trb/switch-to-minibuffer ()
   "Switch to minibuffer window."
   (interactive)
   (if (active-minibuffer-window)
       (select-window (active-minibuffer-window))
     (error "Minibuffer is not active")))
 
-;;;; ----------------- Global keybindings ----------------------------------------
+; Source - https://stackoverflow.com/a/7250027
+; Posted by amalloy
+; Retrieved 2026-02-22, License - CC BY-SA 3.0
+(defun trb/smart-beginning-of-line ()
+  "Move point to the beginning of text on the current line; if that is already
+the current position of point, then move it to the beginning of the line."
+  (interactive)
+  (let ((pt (point)))
+    (beginning-of-line-text)
+    (when (eq pt (point))
+      (beginning-of-line))))
+
+
+;;;; --- Global keybindings ----------------------------------------------------
 
 ;; window size management
 (global-set-key (kbd "C-c C-w C-p") 'shrink-window-horizontally)
@@ -94,54 +129,32 @@
 ;; ALT+F4 binding, also bound to C-x C-c
 (global-set-key (kbd "M-<f4>") 'save-buffers-kill-terminal) 
 
-;; general edition keybindings
+;; general trb/edition keybindings
 (global-set-key (kbd "<f5>") 'sort-lines)
 (global-set-key (kbd "C-c C-/") #'comment-or-uncomment-region)
 (global-set-key (kbd "M-<up>") #'move-line-up)
 (global-set-key (kbd "M-<down>") #'move-line-down)
 
-(global-set-key (kbd "C-c C-c b") #'switch-to-minibuffer)
-(global-set-key (kbd "C-c C-g") #'magit-status)
+(global-set-key (kbd "C-c C-c b") #'trb/switch-to-minibuffer)
 (global-set-key (kbd "C-x C-/") #'revert-buffer)
-
+(global-set-key (kbd "C-x C-b")  #'switch-to-buffer)
 
 ;; Defines list of kbd translations for special unicode chars.
 (define-key key-translation-map (kbd "<f9> p") (kbd "φ"))
 (define-key key-translation-map (kbd "<f9> d") (kbd "Δ"))
 
 ;; go to start of line
-(global-set-key [home] 'smart-beginning-of-line)
+(global-set-key [home] 'trb/smart-beginning-of-line)
+(global-set-key (kbd "C-a") #'trb/smart-beginning-of-line)
 
 
-;;;; Step 4) Setup use-package & external deps tools ---------------------------
+
+;;;; --- Setup use-package & external deps tools -------------------------------
 (package-initialize)
 
-(let* ((no-ssl (and (on-windows)
-                    (not (gnutls-available-p))))
-       (proto (if no-ssl "http" "https")))
-  (when no-ssl
-    (warn "\
-Your version of Emacs does not support SSL connections,
-which is unsafe because it allows man-in-the-middle attacks.
-There are two things you can do about this warning:
-1. Install an Emacs version that does support SSL and be safe.
-2. Remove this warning from your init file so you won't see it again."))
-  ;; Comment/uncomment these two lines to enable/disable MELPA and MELPA Stable as desired
-  
-  (add-to-list 'package-archives
-	       (cons "melpa" (concat proto "://melpa.org/packages/")) t)
-  (add-to-list 'package-archives
-	       (cons "gnu" (concat proto "://elpa.gnu.org/packages/")) t)
-  (add-to-list 'package-archives
-	       (cons "org" (concat proto "://orgmode.org/elpa/")) t)
-
-  ;;(Add-to-list 'package-archives (cons "melpa-stable" (concat proto "://stable.melpa.org/packages/")) t)
-  (when (< emacs-major-version 24)
-    ;; For important compatibility libraries like cl-lib
-    (add-to-list 'package-archives (cons "gnu" (concat proto "://elpa.gnu.org/packages/")))))
-
-;; (setq package-check-signature nil)
-(setq gnutls-algorithm-priority "NORMAL:-VERS-TLS1.3")
+;; Package archives — modern Emacs has built-in TLS support, no SSL detection needed
+(add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
+(add-to-list 'package-archives '("nongnu" . "https://elpa.nongnu.org/nongnu/") t)
 
 
 (unless (package-installed-p 'use-package)
@@ -153,17 +166,19 @@ There are two things you can do about this warning:
         use-package-expand-minimally t))
 
 
-;;;; Step 5) Contextual configurations -----------------------------------------
-
-;;;; Step 5.1) Edition  --------------------------------------------------------
+;;;; --- Contextual configurations ---------------------------------------------
+;;;; --- Edition  --------------------------------------------------------------
 (add-hook 'prog-mode-hook #'hs-minor-mode)
 (add-hook 'emacs-lisp-mode-hook #'show-paren-mode)
 
 (setq-default indent-tabs-mode nil)
 (setq indent-tabs-mode nil)
+(column-number-mode t)
+(electric-indent-mode -1)
+;; trust all themes without prompting
+(setq custom-safe-themes t)
 
 (use-package markdown-mode
-  :ensure t
   :mode (".md" . gfm-mode)
   :init (setq markdown-command "multimarkdown")
   :bind (:map markdown-mode-map
@@ -178,7 +193,6 @@ There are two things you can do about this warning:
 
 (use-package htmlize
   :after org
-  :ensure t
   :config
   ;; (setq org-html-htmlize-output-type 'inline-css) ;; default
   (setq org-html-htmlize-output-type 'css)
@@ -187,13 +201,10 @@ There are two things you can do about this warning:
 
 ;; markdown export backend
 (use-package ox-gfm
-  :ensure t
   :after org)
 
-(setq org-publish-project-alist nil)
-
 (defun org-refresh ()
-  "Refresh parsed tree for current buffer"
+  "Refresh parsed tree for current buffer."
   (interactive)
   (org-set-regexps-and-options))
 
@@ -215,54 +226,85 @@ There are two things you can do about this warning:
           (t (message "Can only toggle between TODO and DONE.")))))
 
 (defun get-org-keywords ()
-  "Parse the buffer and return a cons list of (property . value)"
+  "Parse the buffer and return a cons list of (property . value)."
   (org-element-map (org-element-parse-buffer 'element) 'keyword
-    (lambda (keyword) (cons
-                        (org-element-property :key keyword)
-                        (org-element-property :value keyword)))))
+    (lambda (keyword) (cons (org-element-property :key keyword)
+                            (org-element-property :value keyword)))))
 
 (defun get-org-keyword (key &optional kwds)
-  "return the value associated to key"
+  "Return the value associated to KEY."
   (unless kwds (setq kwds (get-org-keywords)))
-  (cdr (assoc key props)))
+  (cdr (assoc key kwds)))
 
-;; customization of org behavior
-(with-eval-after-load 'org
-  (setq org-src-fontify-natively t)
-  (setq org-html-doctype "html5")
-  (setq org-image-actual-width 400)
-
+(use-package org
+  :ensure nil  ;; built-in
+  :defer t
+  :bind (("C-c l" . org-store-link)
+         ("C-c a" . org-agenda)
+         ("C-c c" . org-capture)
+         :map org-mode-map
+         ("C-c L" . org-toggle-link-display)
+         ("C-c i" . (lambda () (interactive) (org-display-inline-images t t)))
+         ("C-c D" . org-set-to-done))
+  :hook ((org-mode . visual-line-mode)
+         (org-mode . fixed-font-on-needing-blocks))
+  :config
+  (setq org-src-fontify-natively    t
+        org-html-doctype            "html5"
+        org-image-actual-width      400
+        org-support-shift-select    'always
+        org-confirm-babel-evaluate  nil
+        org-publish-project-alist   nil
+        org-todo-keywords           '((sequence "TODO(t)" "NOW(n)" "LATER(l)" "REVIEW(r)"
+                                                "|" "INREVIEW(ir)" "WAITING"
+                                                "DONE(D)" "CANCELED(c)" "DELEGATED(d)")))
   (customize-set-value 'org-latex-with-hyperref nil)
-
   (add-to-list 'org-latex-default-packages-alist "\\PassOptionsToPackage{hyphens}{url}")
-
-  (add-hook 'org-mode-hook #'visual-line-mode)
-  (add-hook 'org-mode-hook #'fixed-font-on-needing-blocks)
-
-  (setq org-todo-keywords
-    '((sequence "TODO(t)" "NOW(n)" "LATER(l)" "REVIEW(r)" "|" "INREVIEW(ir)" "WAITING" "DONE(D)" "CANCELED(c)" "DELEGATED(d)")))
-
- ;; don't ask to evaluate source code block
-  (setq org-confirm-babel-evaluate nil)
-  ;; activate shell language for babel
-  (org-babel-do-load-languages 'org-babel-load-languages
-    '((shell t)))
-
-  ;; Keybindings
-  (define-key org-mode-map (kbd "C-c L") #'org-toggle-link-display)
-  (define-key org-mode-map (kbd "C-c i") (lambda () (org-display-inline-images t t)))
-  (define-key org-mode-map (kbd "C-c D") 'org-set-to-done)
-
-  ;; global keybindings
-  (global-set-key (kbd "C-c l") #'org-store-link)
-  (global-set-key (kbd "C-c a") #'org-agenda)
-  (global-set-key (kbd "C-c c") #'org-capture))
+  (org-babel-do-load-languages 'org-babel-load-languages '((shell . t))))
 
 
-;;;; Step 5.2) Appearance ------------------------------------------------------
+;;;; --- Transversal -----------------------------------------------------------
+
+;; ssh env — deferred, not needed before first connection
+(use-package keychain-environment
+  :defer 2
+  :config
+  (keychain-refresh-environment))
+
+(use-package ace-window
+  :bind ("C-x o" . ace-window))
+
+;; ivy is the foundation — no :after, must initialize at startup
+(use-package ivy
+  :demand t
+  :bind (("C-c C-r" . ivy-resume)
+         ("<f6>"   . ivy-resume))
+  :config
+  (setq ivy-use-virtual-buffers t)
+  (setq enable-recursive-minibuffers t)
+  (ivy-mode 1))
+
+(use-package swiper
+  :after ivy
+  :bind ("C-s" . swiper))
+
+;; Fixes xdg-open issue on org HTML export which can't open the resulting html
+;; file (C-c C-e h o)
+(setq process-connection-type nil)
+
+(use-package magit
+  :bind ("C-c C-g" . magit-status))
+
+;; auto ssh-add — deferred, not needed during startup
+(use-package ssh-agency
+  :defer 3
+  :config
+  (setq ssh-agency-keys '("~/.ssh/id_rsa_gitlab" "~/.ssh/id_rsa")))
+
+
+;;;; --- Appearance ------------------------------------------------------------
 
 (use-package doom-themes
-  :ensure t
   ;; Global settings (defaults)
   :config
   (setq doom-themes-enable-bold t)    ; if nil, bold is universally disabled
@@ -277,57 +319,12 @@ There are two things you can do about this warning:
       '(buffer-file-name "%f" (dired-directory direct-directy "%b")))
 
 
-;;;; Step 5.3) Transversal ----------------------------------------------------
+;;;; --- Startup timing --------------------------------------------------------
 
-;; disable the beep
-;; (setq ring-bell-function 'ignore)
+(add-hook 'emacs-startup-hook
+          (lambda ()
+            (message "[trb] setup.el loaded in %.3fs — %d GC(s)"
+                     (float-time (time-since trb/setup-start-time))
+                     gcs-done)))
 
-;; instead show the error
-(setq visible-bell t)
-
-;; ssh env etc.
-(use-package keychain-environment
-  :ensure t
-  :config
-  (keychain-refresh-environment))
-
-(use-package ace-window
-  :ensure t
-  :config
-  (global-set-key (kbd "C-x o") 'ace-window))
-
-(use-package ivy
-  :ensure t
-  :after (swiper counsel)
-  :config
-  (setq ivy-use-virtual-buffers t)
-  (setq enable-recursive-minibuffers t)
-  ;; enable this if you want `swiper' to use it
-  ;; (setq search-default-mode #'char-fold-to-regexp)
-  (global-set-key (kbd "C-c C-r") 'ivy-resume)
-  (global-set-key (kbd "<f6>") 'ivy-resume)
-  (ivy-mode 1)
-)
-
-(use-package swiper
-  :ensure t
-  :after ivy
-  :config
-  (global-set-key "\C-s" 'swiper))
-
-;; Fixes xdg-open issue on org HTML export which can't open the resulting html 
-;; file (C-c- C-e h o)
-(setq process-connection-type nil)
-
-(use-package magit
-  :ensure t
-  :config
-  (setq vc-handled-backends (delq 'Git vc-handled-backends))
-)
-
-;; auto ssh-add 
-(use-package ssh-agency :ensure t
- :config
- (setq ssh-agency-keys '("~/.ssh/id_rsa_gitlab" "~/.ssh/id_rsa"))
-)
-
+;;; setup.el ends here

@@ -1,12 +1,23 @@
 #+TITLE:  Emacs configuration
-* Global structure
+
+* About this configuration
+
+This configuration is relatively small by design because I use emacs only for 
+certain use-cases today. The main one being to manage git with ~magit~ and the
+second one being to takes notes using ~org-mode~.
+
+That's why the configuration got smaller and smaller and that you won't find
+advanced programming features in it such as LSP or agentic programming. I don't
+use emacs for that so I don't need it in my config.
+
+* Configuration structure
 
 - ~early-init.el~ early initialisation, contains optimisations for emacs
-- ~init.el~ entry point of the emacs configuration, holds customized variables & loading of ~setup.el~
+- ~init.el~ entry point of the emacs configuration, holds customized variables
+  and loading of ~setup.el~
 - ~setup.el~ main configuration file
 
 * Used packages
-
 
 |--------------+------------------------------------------+-----------------|
 | Package name | Description                              | Main keybinding |
@@ -17,9 +28,7 @@
 | doom-themes  | Customize emacs look with lots of themes | -               |
 |--------------+------------------------------------------+-----------------|
 
-
 * Main keybindings
-
 
 |-----------------------------------+------------+------------------------------------------------------------------|
 | Family                            | Keybinding | Function                                                         |
@@ -42,6 +51,6 @@
 |-----------------------------------+------------+------------------------------------------------------------------|
 
 
+* Tasks
 
-
-
+** TODO Check everything works fine on linux still
