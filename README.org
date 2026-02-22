@@ -1,41 +1,45 @@
 #+TITLE:  Emacs configuration
 * Global structure
-- ~init.el~ main configuration file, holds customized variables & loading of all setup files
-- ~functions.el~ global generic function
-- ~hooks.el~ global mode & hooks settings --> should be deleted.
-- ~keybindings.el~ basic keybindings for "native" functions of emacs
-- ~packages.el~ dependencies setup & loading of all elisp files under ~packages/~
-- ~packages/*.el~ mode specific configurations by functionnality
 
-* Used package
-| nano-emacs                | minimalist theme by nrougier for emacs |
-| dashboard                 | minimalist splash screen for emacs     |
-| magit                     | Git integration in emacs               |
-| ace-window                | Navigation between frames              |
-| straight.el + use-package | Dependency management                  |
+- ~early-init.el~ early initialisation, contains optimisations for emacs
+- ~init.el~ entry point of the emacs configuration, holds customized variables & loading of ~setup.el~
+- ~setup.el~ main configuration file
+
+* Used packages
 
 
-* Custom functions
-- ~open-emacs-config-file~ opens ~~/.emacs.d/init.el~
-- ~reload-config~ force reload of ~~/.emacs.d/init.el~
+|--------------+------------------------------------------+-----------------|
+| Package name | Description                              | Main keybinding |
+|--------------+------------------------------------------+-----------------|
+| magit        | Git integration in emacs                 | ~C-c C-g~       |
+| ace-window   | Navigation between frames                | ~C-x o~         |
+| ivy + swiper | Search within buffer                     | ~C-s~           |
+| doom-themes  | Customize emacs look with lots of themes | -               |
+|--------------+------------------------------------------+-----------------|
+
 
 * Main keybindings
 
-** emacs-lisp evaluation
-| Keybinding | Function    |
-|------------+-------------|
-| ~C-c C-r~    | =eval-region= |
-| ~C-c C-b~    | =eval-buffer= |
 
-
-* Common code edition
-| ~C-c C-/~ | =comment-or-uncomment-region= |
-
-* Buffer / Frame / Window management
-| ~C-x B~   | Open all buffer listing                                      |
-| ~C-x C-b~ | Swipe between buffers                                        |
-| ~C-x o~   | Triggers ~ace-window~, replace default binding of ~other-window~ |
-|         |                                                              |
+|-----------------------------------+------------+------------------------------------------------------------------|
+| Family                            | Keybinding | Function                                                         |
+|-----------------------------------+------------+------------------------------------------------------------------|
+| elisp evaluations                 |            |                                                                  |
+|-----------------------------------+------------+------------------------------------------------------------------|
+|                                   | ~C-c C-r~  | eval-region                                                      |
+|                                   | ~C-c C-b~  | eval-buffer                                                      |
+|-----------------------------------+------------+------------------------------------------------------------------|
+| Common code edition               |            |                                                                  |
+|-----------------------------------+------------+------------------------------------------------------------------|
+|                                   | ~C-c C-/~  | comment-or-uncomment-region                                      |
+|-----------------------------------+------------+------------------------------------------------------------------|
+| Buffer, Frame & Window management |            |                                                                  |
+|-----------------------------------+------------+------------------------------------------------------------------|
+|                                   | ~C-x B~    | Open all buffer listing                                          |
+|                                   | ~C-x C-b~  | Swipe between buffers                                            |
+|                                   | ~C-x o~    | Triggers ~ace-window~, replace default binding of ~other-window~ |
+|                                   | ~C-x k~    | Kill a buffer                                                    |
+|-----------------------------------+------------+------------------------------------------------------------------|
 
 
 
